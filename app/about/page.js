@@ -7,7 +7,7 @@ const Calendar = () => {
   const [appointments, setAppointments] = useState([]);
 
   const addAppointment = (appointment) => {
-    fetch('https://marc-test-khaki.vercel.app/api/appointments', {
+    fetch('https://teste-marc-092694a40924.herokuapp.com/api/appointments', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
