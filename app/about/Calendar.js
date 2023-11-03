@@ -5,6 +5,7 @@ import { getFirestore, collection, query, where, getDocs } from 'firebase/firest
 import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2';
 import Calendar from 'react-calendar';
+import '../globals.css'
 import 'react-calendar/dist/Calendar.css';
 
 
@@ -24,10 +25,10 @@ const AppointmentForm = ({ addAppointment }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [showPopup, setShowPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState('');
   const [availableHours, setAvailableHours] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchAvailableHours = async () => {
@@ -36,7 +37,7 @@ const AppointmentForm = ({ addAppointment }) => {
       const q = query(appointmentsRef, where('date', '==', formattedDate));
       const querySnapshot = await getDocs(q);
       const appointments = querySnapshot.docs.map(doc => doc.data());
-
+  
       let currentHour = 9;
       let currentMinute = 0;
       const hours = [];
@@ -51,12 +52,14 @@ const AppointmentForm = ({ addAppointment }) => {
         }
       }
       setAvailableHours(hours);
+      setIsLoading(false);
     };
-
+  
     if (selectedDate && !isNaN(selectedDate.getTime())) {
       fetchAvailableHours();
     }
   }, [selectedDate]);
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,111 +69,87 @@ const AppointmentForm = ({ addAppointment }) => {
       setName('');
       setSelectedDate(null);
       setSelectedHour('');
-      setShowPopup(false);
     }
   };
+
+  const isDayFullyBooked = () => {
+    const today = new Date();
+    if (today.getDate() === selectedDate.getDate()) {
+      return true; // Todos os horários para este dia estão preenchidos
+    }
+      return availableHours.filter(hourObj => hourObj.available).length === 0;
+  };
   
-  const handleAgendarClick = () => {
-    setShowPopup(true);
-  };
-
-  const isDateAvailable = (date) => {
-    const currentDate = new Date();
-    const selectedDate = new Date(date);
-    const dayOfWeek = selectedDate.getDay(); // 0 = domingo, 3 = quarta-feira
-    return selectedDate >= currentDate && ![0, 3].includes(dayOfWeek);
-  };
-
-  const handleCalendarClick = () => {
-    // Função vazia para desabilitar a interação do mouse
-  };
 
   return (
     <div>
-      <button type="button" onClick={handleAgendarClick}>
-        Agendar
-      </button>
-      {showPopup && (
-        <div style={popupStyle}>
-          <form onSubmit={handleSubmit}>
-            <h3>Agendar</h3>
-            <p>*De momento apenas aceitamos marcacoes de servicos de cabelo simples.</p>
-            <input
-              type="text"
-              placeholder="Nome"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              style={inputStyle}
+      <div>
+        <form onSubmit={handleSubmit}>
+          <h3>Agendar</h3>
+          <p>*De momento apenas aceitamos marcações de serviços de cabelo simples.</p>
+          <input
+            type="text"
+            placeholder="Nome"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <PhoneInput
+            country={'pt'}
+            value={phone}
+            onChange={(phone) => setPhone(phone)}
+          />
+          <div>
+            <Calendar
+              locale="pt" 
+              onChange={date => setSelectedDate(date)}
+              value={selectedDate}
+              minDate={new Date()} // Mostrar apenas os dias atuais
+              maxDetail="month" // Mostrar apenas o mês atual, ocultando meses anteriores
+              maxDate={new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)} // Show only the current month
+              showNavigation={false}
+
             />
-            <input
-              type="email"
-              placeholder="E-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={inputStyle}
-            />
-            <PhoneInput
-              country={'pt'}
-              value={phone}
-              onChange={(phone) => setPhone(phone)}
-              inputStyle={inputStyle}
-            />
-            <div>
-              <Calendar
-                onChange={date => setSelectedDate(date)}
-                value={selectedDate}
-                minDate={new Date()} // Mostrar apenas os dias atuais
-                maxDetail="month" // Mostrar apenas o mês atual, ocultando meses anteriores
-                onClickDay={handleCalendarClick} // Desabilitar a interação do mouse
-                tileDisabled={isDateAvailable}
-              />
-            </div>
-            <select value={selectedHour} onChange={(e) => setSelectedHour(e.target.value)} style={inputStyle}>
-              <option value="" disabled>
-                Selecione uma hora
-              </option>
-              {availableHours.map(hourObj => (
-                <option
+          </div>
+          {selectedDate && (
+        <div>
+         {isLoading ? (
+          <div>
+            <p>A Carregar...</p>
+          </div>
+        ) : (
+      <div>
+        {isDayFullyBooked() ? (
+          <p>Todos os horários para este dia estão preenchidos.</p>
+        ) : (
+          <ul>
+            {availableHours
+              .filter(hourObj => hourObj.available)
+              .map(hourObj => (
+                <li
                   key={hourObj.hour}
-                  value={hourObj.hour}
-                  disabled={!hourObj.available}
-                  style={hourObj.available ? {} : { color: 'gray' }}
+                  onClick={() => setSelectedHour(hourObj.hour)}
+                  style={{ cursor: 'pointer' }}
                 >
-                  {hourObj.available ? hourObj.hour : 'Horario Preenchido'}
-                </option>
+                  {hourObj.hour}
+                </li>
               ))}
-            </select>
-            <button type="submit">Agendar</button>
-          </form>
+          </ul>
+        )}
+      </div>
+    )}
         </div>
       )}
+          <button type="submit">Agendar</button>
+        </form>
+      </div>
     </div>
   );
-};
-
-
-
-
-const popupStyle = {
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '300px',
-  padding: '20px',
-  backgroundColor: '#fff',
-  border: '1px solid #ccc',
-  borderRadius: '5px',
-  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  zIndex: '9999',
-};
-
-const inputStyle = {
-  width: '100%',
-  padding: '10px',
-  marginBottom: '10px',
-  borderRadius: '5px',
-  border: '1px solid #ccc',
-};
+}
 
 export default AppointmentForm;
