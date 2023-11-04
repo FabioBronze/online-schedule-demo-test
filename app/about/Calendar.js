@@ -79,6 +79,19 @@ const AppointmentForm = ({ addAppointment }) => {
     }
       return availableHours.filter(hourObj => hourObj.available).length === 0;
   };
+
+  const getReservationDateMessage = (date) => {
+    const daysOfWeek = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+    const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+  
+    const dayOfWeek = daysOfWeek[date.getDay()];
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+  
+    return `Reserve em ${dayOfWeek}, ${month} ${day}, ${year}`;
+  };
+  
   
 
   return (
@@ -116,22 +129,27 @@ const AppointmentForm = ({ addAppointment }) => {
 
             />
           </div>
+          {(!selectedDate || isLoading) && (
+            <p>Escolha um dia para fazer a sua marcação</p>
+          )}
           {selectedDate && (
         <div>
          {isLoading ? (
-          <div>
-            <p>A Carregar...</p>
-          </div>
+          <div className="loading-spinner">
+          <div className="spinner"></div>
+        </div>
         ) : (
       <div>
+        <p>{getReservationDateMessage(selectedDate)}</p>
         {isDayFullyBooked() ? (
           <p>Todos os horários para este dia estão preenchidos.</p>
         ) : (
-          <ul>
+          <ul className='ul'>
             {availableHours
               .filter(hourObj => hourObj.available)
               .map(hourObj => (
                 <li
+                className='lis'
                   key={hourObj.hour}
                   onClick={() => setSelectedHour(hourObj.hour)}
                   style={{ cursor: 'pointer' }}
