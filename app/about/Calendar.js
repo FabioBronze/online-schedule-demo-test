@@ -7,7 +7,7 @@ import PhoneInput from 'react-phone-input-2';
 import Calendar from 'react-calendar';
 import '../globals.css'
 import 'react-calendar/dist/Calendar.css';
-
+import { BsArrowBarRight } from 'react-icons/bs'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBWaUTh4SuTUe6UOES8DAmp8Kv4BmZ_otg',
@@ -16,7 +16,6 @@ const firebaseConfig = {
   storageBucket: 'teste-edc9c.appspot.com',
   messagingSenderId: '1017503897558',
   appId: '1:1017503897558:web:e0f3f5a98bca95e0383677',
-
 };
 
 initializeApp(firebaseConfig);
@@ -28,16 +27,27 @@ const AppointmentForm = ({ addAppointment }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState('');
   const [availableHours, setAvailableHours] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1); // Adicione o estado para a etapa atual
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
+
+  const resetForm = () => {
+    setName('');
+    setEmail('');
+    setPhone('');
+    setSelectedDate(null);
+    setSelectedHour('');
+  };
 
   useEffect(() => {
     const fetchAvailableHours = async () => {
+      setIsLoading(true);
       const formattedDate = selectedDate.toISOString();
       const appointmentsRef = collection(getFirestore(), 'appointments');
       const q = query(appointmentsRef, where('date', '==', formattedDate));
       const querySnapshot = await getDocs(q);
       const appointments = querySnapshot.docs.map(doc => doc.data());
-  
+
       let currentHour = 9;
       let currentMinute = 0;
       const hours = [];
@@ -54,118 +64,200 @@ const AppointmentForm = ({ addAppointment }) => {
       setAvailableHours(hours);
       setIsLoading(false);
     };
-  
+
     if (selectedDate && !isNaN(selectedDate.getTime())) {
       fetchAvailableHours();
     }
   }, [selectedDate]);
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name && selectedDate && !isNaN(selectedDate.getTime()) && selectedHour) {
-      const formattedDate = selectedDate.toISOString();
-      addAppointment({ name, date: formattedDate, email, phone, hour: selectedHour });
-      setName('');
-      setSelectedDate(null);
-      setSelectedHour('');
+    if (currentStep === 2) {
+      if (name && selectedDate && !isNaN(selectedDate.getTime()) && selectedHour) {
+        const formattedDate = selectedDate.toISOString();
+        addAppointment({ name, date: formattedDate, email, phone, hour: selectedHour });
+        setCurrentStep(3);
+        resetForm(); // Chame a função para redefinir os campos do formulário
+      }
     }
   };
 
   const isDayFullyBooked = () => {
-    const today = new Date();
-    if (today.getDate() === selectedDate.getDate()) {
-      return true; // Todos os horários para este dia estão preenchidos
-    }
-      return availableHours.filter(hourObj => hourObj.available).length === 0;
+    return availableHours.filter(hourObj => hourObj.available).length === 0;
   };
 
   const getReservationDateMessage = (date) => {
     const daysOfWeek = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
     const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-  
     const dayOfWeek = daysOfWeek[date.getDay()];
     const month = months[date.getMonth()];
     const day = date.getDate();
     const year = date.getFullYear();
-  
+
     return `Reserve em ${dayOfWeek}, ${month} ${day}, ${year}`;
   };
-  
-  
+
+  const openPopup = () => {
+    setShowPopup(true);
+    document.body.classList.add('no-scroll');
+    setCurrentStep(1); // Definir a etapa inicial ao abrir o popup
+  };
+
+  const nextStep = () => {
+    if (currentStep < 3) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const renderPopupContent = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <div className="step-content">
+            <h3>Etapa 1: Escolher a data e hora</h3>
+            <Calendar
+              locale="pt"
+              onChange={(date) => setSelectedDate(date)}
+              value={selectedDate}
+              minDate={new Date()}
+              maxDetail="month"
+              maxDate={new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)}
+              showNavigation={false}
+              tileDisabled={({ date }) => {
+                const today = new Date();
+                return date.getDate() === today.getDate() &&
+                  date.getMonth() === today.getMonth() &&
+                  date.getFullYear() === today.getFullYear();
+              }}
+            />
+            {selectedDate ? (
+              <div>
+                <p className="hours">{getReservationDateMessage(selectedDate)}</p>
+                {isLoading ? ( // Renderizar o indicador de carregamento enquanto isLoading for verdadeiro
+                  <p>Loading hours...</p>
+                ) : isDayFullyBooked() ? (
+                  <p>Todos os horários para este dia estão preenchidos.</p>
+                ) : (
+                  <ul className="ul">
+                    {availableHours
+                      .filter((hourObj) => hourObj.available)
+                      .map((hourObj) => (
+                        <li
+                          className="lis"
+                          key={hourObj.hour}
+                          onClick={() => {
+                            setSelectedHour(hourObj.hour);
+                            nextStep(); // Avançar para a próxima etapa ao selecionar uma hora
+                          }}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          {hourObj.hour}
+                        </li>
+                      ))}
+                  </ul>
+                )}
+              </div>
+            ) : (
+              <p>Escolha um dia para fazer a sua marcação</p>
+            )}
+            <button onClick={nextStep}>Próxima Etapa</button>
+          </div>
+        );
+      case 2:
+        return (
+          <div className="step-content">
+            <h3>Etapa 2: Preencher informações</h3>
+            <input
+              type="text"
+              placeholder="Nome"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <PhoneInput
+              country={'pt'}
+              value={phone}
+              onChange={(phone) => setPhone(phone)}
+            />
+            <button type="submit" onClick={handleSubmit}>
+              Agendar
+            </button>
+            <button onClick={prevStep}>Etapa Anterior</button>
+          </div>
+        );
+      case 3:
+        if (currentStep === 3) {
+          return (
+            <div className="step-content">
+              <h3>Etapa 3: Marcação agendada com sucesso</h3>
+              <p>Sua marcação foi agendada com sucesso!</p>
+              <button onClick={() => {
+                setShowPopup(false);
+                resetForm(); // Chame a função para redefinir os campos do formulário
+              }}>Fechar</button>
+            </div>
+          );
+        }
+      default:
+        return null;
+    }
+  };
 
   return (
     <div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <h3>Agendar</h3>
-          <p>*De momento apenas aceitamos marcações de serviços de cabelo simples.</p>
-          <input
-            type="text"
-            placeholder="Nome"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="email"
-            placeholder="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <PhoneInput
-            country={'pt'}
-            value={phone}
-            onChange={(phone) => setPhone(phone)}
-          />
-          <div>
-            <Calendar
-              locale="pt" 
-              onChange={date => setSelectedDate(date)}
-              value={selectedDate}
-              minDate={new Date()} // Mostrar apenas os dias atuais
-              maxDetail="month" // Mostrar apenas o mês atual, ocultando meses anteriores
-              maxDate={new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)} // Show only the current month
-              showNavigation={false}
-
-            />
+      {showPopup ? (
+        <div className='popup-overlay'>
+          <div className="popup">
+            <div className="popup-content">
+              <form>
+                {renderPopupContent()}
+              </form>
+            </div>
           </div>
-          {(!selectedDate || isLoading) && (
-            <p>Escolha um dia para fazer a sua marcação</p>
-          )}
-          {selectedDate && (
-        <div>
-         {isLoading ? (
-          <div className="loading-spinner">
-          <div className="spinner"></div>
         </div>
-        ) : (
-      <div>
-        <p>{getReservationDateMessage(selectedDate)}</p>
-        {isDayFullyBooked() ? (
-          <p>Todos os horários para este dia estão preenchidos.</p>
-        ) : (
-          <ul className='ul'>
-            {availableHours
-              .filter(hourObj => hourObj.available)
-              .map(hourObj => (
-                <li
-                className='lis'
-                  key={hourObj.hour}
-                  onClick={() => setSelectedHour(hourObj.hour)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  {hourObj.hour}
-                </li>
-              ))}
-          </ul>
-        )}
-      </div>
-    )}
+      ) : (
+        <div className="menu">
+          <div className="leftMenu">
+            <ul>
+              <li onClick={openPopup}>
+                Corte de Cabelo <BsArrowBarRight />
+              </li>
+              <li onClick={openPopup}>
+                Brushing <BsArrowBarRight />
+              </li>
+              <li onClick={openPopup}>
+                Madeixas <BsArrowBarRight />
+              </li>
+              <li onClick={openPopup}>
+                Coloração <BsArrowBarRight />
+              </li>
+              <li onClick={openPopup}>
+                Ondulação <BsArrowBarRight />
+              </li>
+              <li onClick={openPopup}>
+                Alisamento <BsArrowBarRight />
+              </li>
+              <li onClick={openPopup}>
+                Mise Rolos <BsArrowBarRight />
+              </li>
+            </ul>
+          </div>
+          <div className="rightMenu">
+            <p>Faça clique para fazer marcações:</p>
+          </div>
         </div>
       )}
-          <button type="submit">Agendar</button>
-        </form>
-      </div>
     </div>
   );
 }

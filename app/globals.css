@@ -12,8 +12,18 @@ code {
   font-weight: 400;
 }
 
+.hours {
+  text-align: center;
+}
+
+.hourst {
+  text-align: center;
+}
+
 .react-calendar { 
   color: #000;
+  margin: 2rem auto;
+  width: 400px !important;
   line-height: 2rem !important;
  }
 
@@ -82,4 +92,71 @@ code {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.menu {
+  display: flex;
+  max-width: 1200px;
+  margin: 5rem auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftMenu {
+  width: 100%;
+  margin: 0 2rem;
+  transform: .1s;
+}
+
+.leftMenu li {
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-top: none;
+  transition: .1s;
+}
+
+.leftMenu li:hover {
+  background: #00000018;
+}
+
+.rightMenu {
+  width: 2800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.popup {
+  /* Other styles for your popup */
+  position: fixed;
+  margin: 0 auto;
+  z-index: 1000;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  max-height: 80%;
+  overflow-y: auto; /* Enable scroll for the popup */
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.411);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  width: 600px;
+  height: 80%;
+  background-color: white;
+  padding: 20px;
 }

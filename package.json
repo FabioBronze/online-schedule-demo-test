@@ -18,6 +18,8 @@
     "react-bootstrap": "^2.9.1",
     "react-calendar": "^4.6.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
+    "react-modal": "^3.16.1",
     "react-phone-input-2": "^2.15.1"
   }
 }
