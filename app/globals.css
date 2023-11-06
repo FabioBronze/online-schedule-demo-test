@@ -160,3 +160,7 @@ code {
   background-color: white;
   padding: 20px;
 }
+
+.no-scroll {
+  overflow: hidden;
+}
