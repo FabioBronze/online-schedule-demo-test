@@ -166,7 +166,6 @@ const AppointmentForm = ({ addAppointment }) => {
             ) : (
               <p>Escolha um dia para fazer a sua marcação</p>
             )}
-            <button onClick={nextStep}>Próxima Etapa</button>
           </div>
         );
       case 2:
