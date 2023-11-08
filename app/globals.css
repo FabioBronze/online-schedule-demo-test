@@ -73,27 +73,6 @@ code {
   background-color: #cccccc73;
 }
 
- .loading-spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px; /* Adjust the height as needed */
-}
-
-.spinner {
-  border: 6px solid rgba(0, 0, 0, 0.3);
-  border-top: 6px solid #007bff; /* Loading spinner color */
-  border-radius: 50%;
-  width: 40px; /* Adjust the size as needed */
-  height: 40px; /* Adjust the size as needed */
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
 .menu {
   display: flex;
   max-width: 1200px;
@@ -156,7 +135,7 @@ code {
 }
 
 .popup-content {
-  width: 600px;
+  width: 500px;
   height: 80%;
   background-color: white;
   padding: 20px;
