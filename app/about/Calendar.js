@@ -95,7 +95,7 @@ const AppointmentForm = ({ addAppointment }) => {
       } else {
         setLastnameError('');
       }
-      
+
       // Validação de e-mail usando regex
       const emailRegex = /^\S+@\S+\.\S+$/;
       if (!email || !emailRegex.test(email)) {
@@ -111,7 +111,7 @@ const AppointmentForm = ({ addAppointment }) => {
       } else {
         setPhoneError('');
       }
-      
+
       if (isValid) {
         const formattedDate = selectedDate.toISOString();
         addAppointment({ name, lastName, date: formattedDate, email, phone, observations, hour: selectedHour });
@@ -151,6 +151,10 @@ const AppointmentForm = ({ addAppointment }) => {
   const prevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
+      setNameError('')
+      setLastnameError('')
+      setEmailError('')
+      setPhoneError('')
     }
   };
 
@@ -211,44 +215,73 @@ const AppointmentForm = ({ addAppointment }) => {
         return (
           <div className="step-content">
             <h3>Etapa 2: Preencher informações</h3>
+
+            <label htmlFor="name">Nome:</label>
             <input
               type="text"
-              placeholder="Nome"
+              id="name"
+              name="name"
+              placeholder="O seu Nome"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              aria-describedby="name-error"
+              className={nameError ? 'error-input' : ''}
             />
-            { nameError && <span className="error-message">{nameError}</span> }
+            {nameError && <span className="error-message">{nameError}</span>}
+
+            <label htmlFor="lastName">Sobrenome:</label>
             <input
               type="text"
-              placeholder="Sobrenome"
+              id="lastName"
+              name="lastName"
+              placeholder="O seu Sobrenome"
               value={lastName}
               onChange={(e) => setLastname(e.target.value)}
+              aria-describedby="lastName-error"
+              className={nameError ? 'error-input' : ''}
             />
-            { lastnameError && <span className="error-message">{lastnameError}</span> }
+            {lastnameError && <span className="error-message">{lastnameError}</span>}
+
+            <label htmlFor="email">E-mail:</label>
             <input
               type="email"
-              placeholder="E-mail"
+              id="email"
+              name="email"
+              placeholder="O seu E-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              aria-describedby="email-error"
+              className={nameError ? 'error-input' : ''}
             />
-            { emailError && <span className="error-message">{emailError}</span> }
+            {emailError && <span className="error-message">{emailError}</span>}
+
+            <label htmlFor="phone">Telefone:</label>
             <input
-              type='number'
+              type="number"
+              id="phone"
+              name="phone"
+              placeholder="O seu Telefone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              aria-describedby="phone-error"
+              className={nameError ? 'error-input' : ''}
             />
-             <input
+            {phoneError && <span className="error-message">{phoneError}</span>}
+
+            <label>Observações:</label>
+            <input
               type="text"
+              id="observations"
+              name="observations"
               placeholder="Observações (opcional)"
               value={observations}
               onChange={(e) => setObservations(e.target.value)}
             />
-            { phoneError && <span className="error-message">{phoneError}</span> }
 
+            <button onClick={prevStep}>Etapa Anterior</button>
             <button type="submit" onClick={handleSubmit}>
               Agendar
             </button>
-            <button onClick={prevStep}>Etapa Anterior</button>
           </div>
         );
       case 3:
@@ -259,7 +292,7 @@ const AppointmentForm = ({ addAppointment }) => {
               <p>Sua marcação foi agendada com sucesso!</p>
               <button onClick={() => {
                 setShowPopup(false);
-                resetForm(); 
+                resetForm();
               }}>Fechar</button>
             </div>
           );
@@ -275,7 +308,7 @@ const AppointmentForm = ({ addAppointment }) => {
         <div className='popup-overlay'>
           <div className="popup">
             <div className="popup-content">
-              <form>
+              <form autoComplete='on'>
                 {renderPopupContent()}
               </form>
             </div>
