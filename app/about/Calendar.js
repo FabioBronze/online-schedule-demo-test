@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
-import 'react-phone-input-2/lib/style.css';
-import PhoneInput from 'react-phone-input-2';
 import Calendar from 'react-calendar';
 import '../globals.css'
 import 'react-calendar/dist/Calendar.css';
@@ -22,19 +20,28 @@ initializeApp(firebaseConfig);
 
 const AppointmentForm = ({ addAppointment }) => {
   const [name, setName] = useState('');
+  const [lastName, setLastname] = useState('')
+  const [observations, setObservations] = useState('')
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState('');
   const [availableHours, setAvailableHours] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
-  const [currentStep, setCurrentStep] = useState(1); // Adicione o estado para a etapa atual
-  const [isLoading, setIsLoading] = useState(false); // Add loading state
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [nameError, setNameError] = useState('');
+  const [lastnameError, setLastnameError] = useState('')
+  const [emailError, setEmailError] = useState('');
+  const [phoneError, setPhoneError] = useState('')
 
   const resetForm = () => {
     setName('');
+    setLastname('')
     setEmail('');
     setPhone('');
+    setObservations('')
     setSelectedDate(null);
     setSelectedHour('');
   };
@@ -73,11 +80,43 @@ const AppointmentForm = ({ addAppointment }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentStep === 2) {
-      if (name && selectedDate && !isNaN(selectedDate.getTime()) && selectedHour) {
+      // Adicione validação para campos obrigatórios e e-mail
+      let isValid = true;
+      if (!name) {
+        setNameError('Campo obrigatório');
+        isValid = false;
+      } else {
+        setNameError('');
+      }
+
+      if (!lastName) {
+        setLastnameError('Campo obrigatório');
+        isValid = false;
+      } else {
+        setLastnameError('');
+      }
+      
+      // Validação de e-mail usando regex
+      const emailRegex = /^\S+@\S+\.\S+$/;
+      if (!email || !emailRegex.test(email)) {
+        setEmailError('E-mail inválido');
+        isValid = false;
+      } else {
+        setEmailError('');
+      }
+
+      if (!phone) {
+        setPhoneError('Campo obrigatório');
+        isValid = false;
+      } else {
+        setPhoneError('');
+      }
+      
+      if (isValid) {
         const formattedDate = selectedDate.toISOString();
-        addAppointment({ name, date: formattedDate, email, phone, hour: selectedHour });
+        addAppointment({ name, lastName, date: formattedDate, email, phone, observations, hour: selectedHour });
         setCurrentStep(3);
-        resetForm(); // Chame a função para redefinir os campos do formulário
+        resetForm();
       }
     }
   };
@@ -178,17 +217,34 @@ const AppointmentForm = ({ addAppointment }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            { nameError && <span className="error-message">{nameError}</span> }
+            <input
+              type="text"
+              placeholder="Sobrenome"
+              value={lastName}
+              onChange={(e) => setLastname(e.target.value)}
+            />
+            { lastnameError && <span className="error-message">{lastnameError}</span> }
             <input
               type="email"
               placeholder="E-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <PhoneInput
-              country={'pt'}
+            { emailError && <span className="error-message">{emailError}</span> }
+            <input
+              type='number'
               value={phone}
-              onChange={(phone) => setPhone(phone)}
+              onChange={(e) => setPhone(e.target.value)}
             />
+             <input
+              type="text"
+              placeholder="Observações (opcional)"
+              value={observations}
+              onChange={(e) => setObservations(e.target.value)}
+            />
+            { phoneError && <span className="error-message">{phoneError}</span> }
+
             <button type="submit" onClick={handleSubmit}>
               Agendar
             </button>
@@ -203,7 +259,7 @@ const AppointmentForm = ({ addAppointment }) => {
               <p>Sua marcação foi agendada com sucesso!</p>
               <button onClick={() => {
                 setShowPopup(false);
-                resetForm(); // Chame a função para redefinir os campos do formulário
+                resetForm(); 
               }}>Fechar</button>
             </div>
           );
