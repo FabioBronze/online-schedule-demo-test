@@ -329,7 +329,7 @@ const AppointmentForm = ({ addAppointment }) => {
                 <div class="progress-line2"></div>
                 <div class="progress-point"></div>
               </div>
-              <Image src={t} alt='test'/>
+              <Image src={t} alt='test' placeholder='blur' />
               <p>Sua marcação foi agendada com sucesso!</p>
               <p>Verifique o seu Email.</p>
               <button onClick={() => {
