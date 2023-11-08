@@ -185,7 +185,14 @@ const AppointmentForm = ({ addAppointment }) => {
       case 1:
         return (
           <div className="step-content">
-            <h3>Etapa 1: Escolher a data e hora</h3>
+            <h3>Escolha o horario</h3>
+            <div class="progress-bar">
+              <div class="progress-point"></div>
+              <div class="progress-line"></div>
+              <div class="progress-point2"></div>
+              <div class="progress-line"></div>
+              <div class="progress-point2"></div>
+            </div>
             <Calendar
               locale="pt"
               onChange={(date) => setSelectedDate(date)}
@@ -236,8 +243,14 @@ const AppointmentForm = ({ addAppointment }) => {
       case 2:
         return (
           <div className="step-content">
-            <h3>Etapa 2: Preencher informações</h3>
-
+            <h3>Informacoes Pessoais</h3>
+            <div class="progress-bar">
+              <div class="progress-point"></div>
+              <div class="progress-line2"></div>
+              <div class="progress-point"></div>
+              <div class="progress-line"></div>
+              <div class="progress-point2"></div>
+            </div>
             <label htmlFor="name">Nome:</label>
             <input
               type="text"
@@ -306,7 +319,15 @@ const AppointmentForm = ({ addAppointment }) => {
         if (currentStep === 3) {
           return (
             <div className="step-content">
-              <h3>Etapa 3: Marcação agendada com sucesso</h3>
+              <h3>Marcacao Agendada</h3>
+              <div class="progress-bar">
+                <div class="progress-point"></div>
+                <div class="progress-line2"></div>
+                <div class="progress-point"></div>
+                <div class="progress-line2"></div>
+                <div class="progress-point"></div>
+              </div>
+              
               <p>Sua marcação foi agendada com sucesso!</p>
               <button onClick={() => {
                 setShowPopup(false);
