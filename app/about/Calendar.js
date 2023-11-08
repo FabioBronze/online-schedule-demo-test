@@ -188,12 +188,12 @@ const AppointmentForm = ({ addAppointment }) => {
         return (
           <div className="step-content">
             <h3>Escolha o horario</h3>
-            <div class="progress-bar">
-              <div class="progress-point"></div>
-              <div class="progress-line"></div>
-              <div class="progress-point2"></div>
-              <div class="progress-line"></div>
-              <div class="progress-point2"></div>
+            <div className="progress-bar">
+              <div className="progress-point"></div>
+              <div className="progress-line"></div>
+              <div className="progress-point2"></div>
+              <div className="progress-line"></div>
+              <div className="progress-point2"></div>
             </div>
             <Calendar
               locale="pt"
@@ -246,12 +246,12 @@ const AppointmentForm = ({ addAppointment }) => {
         return (
           <div className="step-content">
             <h3>Informacoes Pessoais</h3>
-            <div class="progress-bar">
-              <div class="progress-point"></div>
-              <div class="progress-line2"></div>
-              <div class="progress-point"></div>
-              <div class="progress-line"></div>
-              <div class="progress-point2"></div>
+            <div className="progress-bar">
+              <div className="progress-point"></div>
+              <div className="progress-line2"></div>
+              <div className="progress-point"></div>
+              <div className="progress-line"></div>
+              <div className="progress-point2"></div>
             </div>
             <label htmlFor="name">Nome:</label>
             <input
