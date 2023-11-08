@@ -46,6 +46,28 @@ const AppointmentForm = ({ addAppointment }) => {
     setSelectedHour('');
   };
 
+  const handlePhoneChange = (e) => {
+    // Remova todos os caracteres não numéricos do valor
+    const phoneValue = e.target.value.replace(/\D/g, '');
+
+    // Divida o valor em grupos de 3 dígitos com espaço
+    let formattedPhone = '';
+    for (let i = 0; i < phoneValue.length; i++) {
+      if (i > 0 && i % 3 === 0) {
+        formattedPhone += ' ';
+      }
+      formattedPhone += phoneValue[i];
+    }
+
+    // Limitar o comprimento do número de telefone a 9 dígitos
+    if (formattedPhone.length > 9) {
+      formattedPhone = formattedPhone.slice(0, 11);
+    }
+
+    setPhone(formattedPhone);
+  };
+
+
   useEffect(() => {
     const fetchAvailableHours = async () => {
       setIsLoading(true);
@@ -105,8 +127,8 @@ const AppointmentForm = ({ addAppointment }) => {
         setEmailError('');
       }
 
-      if (!phone) {
-        setPhoneError('Campo obrigatório');
+      if (!phone || phone.replace(/\D/g, '').length !== 9) {
+        setPhoneError('Telefone deve ter 9 dígitos');
         isValid = false;
       } else {
         setPhoneError('');
@@ -225,7 +247,6 @@ const AppointmentForm = ({ addAppointment }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               aria-describedby="name-error"
-              className={nameError ? 'error-input' : ''}
             />
             {nameError && <span className="error-message">{nameError}</span>}
 
@@ -238,7 +259,6 @@ const AppointmentForm = ({ addAppointment }) => {
               value={lastName}
               onChange={(e) => setLastname(e.target.value)}
               aria-describedby="lastName-error"
-              className={nameError ? 'error-input' : ''}
             />
             {lastnameError && <span className="error-message">{lastnameError}</span>}
 
@@ -251,20 +271,18 @@ const AppointmentForm = ({ addAppointment }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               aria-describedby="email-error"
-              className={nameError ? 'error-input' : ''}
             />
             {emailError && <span className="error-message">{emailError}</span>}
 
             <label htmlFor="phone">Telefone:</label>
             <input
-              type="number"
+              type="text"
               id="phone"
               name="phone"
               placeholder="O seu Telefone"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={handlePhoneChange}
               aria-describedby="phone-error"
-              className={nameError ? 'error-input' : ''}
             />
             {phoneError && <span className="error-message">{phoneError}</span>}
 

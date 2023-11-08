@@ -121,6 +121,10 @@ code {
   overflow-y: auto; /* Enable scroll for the popup */
 }
 
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 .step-content input {
   width: 90%;
   display: flex;
@@ -182,8 +186,4 @@ code {
   margin-top: -0.9rem;
   margin-bottom: 1rem;
   flex-direction: column;
-}
-
-.error-input {
-  border: 1px solid red !important;
 }
