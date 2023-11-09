@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from 'react';
 import AppointmentForm from './Calendar';
-import AppointmentList from './AppointmentList';
 
 const Calendar = () => {
   const [appointments, setAppointments] = useState([]);
@@ -16,7 +15,7 @@ const Calendar = () => {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Erro ao agendar');
+          throw new Error('Erro ao agendar! Por favor, tente novamente mais tarde.');
         }
         return response.text();
       })
@@ -34,7 +33,6 @@ const Calendar = () => {
     <div>
       <h1>Calendário de Agendamento</h1>
       <AppointmentForm addAppointment={addAppointment} />
-      <AppointmentList appointments={appointments} />
     </div>
   );
 };
