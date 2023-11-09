@@ -117,7 +117,6 @@ code {
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   height: 600px;
-  max-height: 80%;
   overflow-y: auto; /* Enable scroll for the popup */
 }
 
@@ -250,4 +249,14 @@ input[type=number]::-webkit-inner-spin-button {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.tog {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-button {
+  margin: 0 !important;
+  border: none !important;
 }

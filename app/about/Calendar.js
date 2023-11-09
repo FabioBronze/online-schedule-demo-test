@@ -189,7 +189,16 @@ const AppointmentForm = ({ addAppointment }) => {
       case 1:
         return (
           <div className="step-content">
-            <h3>Data e Hora</h3>
+            <div className='tog'>
+              <h3>Data e Hora</h3>
+              <button
+                className="close-button"
+                onClick={() => {
+                  setShowPopup(false);
+                  resetForm();
+                }}
+              >Fechar</button>
+            </div>
             <div className="progress-bar">
               <div className="progress-point"></div>
               <div className="progress-line"></div>
@@ -248,7 +257,20 @@ const AppointmentForm = ({ addAppointment }) => {
       case 2:
         return (
           <div className="step-content">
-            <h3>Informacoes Pessoais</h3>
+            <div className='tog'>
+              <h3>Informacoes Pessoais</h3>
+              <button
+                className="close-button"
+                onClick={() => {
+                  setShowPopup(false);
+                  resetForm();
+                  setNameError('')
+                  setLastnameError('')
+                  setEmailError('')
+                  setPhoneError('')
+                }}
+              >Fechar</button>
+            </div>
             <div className="progress-bar">
               <div className="progress-point"></div>
               <div className="progress-line2"></div>
@@ -325,7 +347,16 @@ const AppointmentForm = ({ addAppointment }) => {
         if (currentStep === 3) {
           return (
             <div className="step-content">
-              <h3>Marcacao Agendada</h3>
+              <div className='tog'>
+              <h3>Marcacao agendada</h3>
+              <button
+                className="close-button"
+                onClick={() => {
+                  setShowPopup(false);
+                  resetForm();
+                }}
+              >Fechar</button>
+            </div>
               <div className="progress-bar">
                 <div className="progress-point"></div>
                 <div className="progress-line2"></div>
@@ -336,10 +367,6 @@ const AppointmentForm = ({ addAppointment }) => {
               <BsCheck2All size={100} className='icon' />
               <p>A sua marcação para o servico de {currentTipoCorte} foi agendada com sucesso!</p>
               <p>Verifique o seu Email para obter mais Informacoes.</p>
-              <button onClick={() => {
-                setShowPopup(false);
-                resetForm();
-              }}>Fechar</button>
             </div>
           );
         }
