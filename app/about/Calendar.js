@@ -213,7 +213,7 @@ const AppointmentForm = ({ addAppointment }) => {
               <div>
                 <p className="hours">{getReservationDateMessage(selectedDate)}</p>
                 {isLoading ? ( // Renderizar o indicador de carregamento enquanto isLoading for verdadeiro
-                  <p>Loading hours...</p>
+                  <div className="loading-animation"></div>
                 ) : isDayFullyBooked() ? (
                   <p>Todos os horários para este dia estão preenchidos.</p>
                 ) : (
