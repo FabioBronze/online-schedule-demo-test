@@ -286,7 +286,7 @@ const AppointmentForm = ({ addAppointment }) => {
                   type="text"
                   id="name"
                   name="name"
-                  placeholder="Seu Nome"
+                  placeholder="Nome"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   aria-describedby="name-error"
@@ -299,7 +299,7 @@ const AppointmentForm = ({ addAppointment }) => {
                   type="text"
                   id="lastName"
                   name="lastName"
-                  placeholder="Seu Sobrenome"
+                  placeholder="Sobrenome"
                   value={lastName}
                   onChange={(e) => setLastname(e.target.value)}
                   aria-describedby="lastName-error"
@@ -312,7 +312,7 @@ const AppointmentForm = ({ addAppointment }) => {
               type="email"
               id="email"
               name="email"
-              placeholder="O seu E-mail"
+              placeholder="E-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               aria-describedby="email-error"
@@ -324,7 +324,7 @@ const AppointmentForm = ({ addAppointment }) => {
               type="text"
               id="phone"
               name="phone"
-              placeholder="O seu Telefone"
+              placeholder="Telefone"
               value={phone}
               onChange={handlePhoneChange}
               aria-describedby="phone-error"
