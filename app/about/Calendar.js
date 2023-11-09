@@ -250,7 +250,7 @@ const AppointmentForm = ({ addAppointment }) => {
                 )}
               </div>
             ) : (
-              <p>Escolha um dia para fazer a sua marcação</p>
+              <p className='text-sh'>Escolha um dia para fazer a sua marcação</p>
             )}
           </div>
         );
