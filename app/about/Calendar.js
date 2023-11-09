@@ -370,16 +370,16 @@ const AppointmentForm = ({ addAppointment }) => {
               <li onClick={() => openPopup("Brushing")}>
                 Brushing <BsArrowBarRight />
               </li>
-              <li onClick={openPopup}>
+              <li onClick={() => openPopup("Madeixas")}>
                 Madeixas <BsArrowBarRight />
               </li>
               <li onClick={() => openPopup("Coloração")}>
                 Coloração <BsArrowBarRight />
               </li>
-              <li onClick={openPopup}>
+              <li onClick={() => openPopup("Ondulação")}>
                 Ondulação <BsArrowBarRight />
               </li>
-              <li onClick={openPopup}>
+              <li onClick={() => openPopup("Alisamento")}>
                 Alisamento <BsArrowBarRight />
               </li>
               <li onClick={() => openPopup("Mise Rolos")}>
