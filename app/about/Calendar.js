@@ -6,8 +6,7 @@ import Calendar from 'react-calendar';
 import '../globals.css'
 import 'react-calendar/dist/Calendar.css';
 import { BsArrowBarRight } from 'react-icons/bs'
-import Image from 'next/image'
-import t from '../../public/correct.png'
+import {BsHandThumbsUp} from 'react-icons/bs'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBWaUTh4SuTUe6UOES8DAmp8Kv4BmZ_otg',
@@ -329,7 +328,7 @@ const AppointmentForm = ({ addAppointment }) => {
                 <div class="progress-line2"></div>
                 <div class="progress-point"></div>
               </div>
-              <Image src={t} alt='test' placeholder='blur' />
+              <BsHandThumbsUp size={100} className='icon'/>
               <p>Sua marcação foi agendada com sucesso!</p>
               <p>Verifique o seu Email.</p>
               <button onClick={() => {

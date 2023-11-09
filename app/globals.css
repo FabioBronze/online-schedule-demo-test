@@ -225,12 +225,11 @@ input[type=number]::-webkit-inner-spin-button {
   background-color: #1d90f5; /* Cor da linha */
 }
 
-.step-content img {
-  height: 128px;
+.step-content .icon {
   margin: 6rem auto;
   display: flex;
   align-items: center;
-  width: auto;  
+  color: #1d90f5;
 }
 
 .step-content p {
