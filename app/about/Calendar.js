@@ -279,30 +279,34 @@ const AppointmentForm = ({ addAppointment }) => {
               <div className="progress-point2"></div>
             </div>
             <h3>Serviço - {currentTipoCorte}</h3>
-            <label htmlFor="name">Nome:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="O seu Nome"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              aria-describedby="name-error"
-            />
-            {nameError && <span className="error-message">{nameError}</span>}
-
-            <label htmlFor="lastName">Sobrenome:</label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              placeholder="O seu Sobrenome"
-              value={lastName}
-              onChange={(e) => setLastname(e.target.value)}
-              aria-describedby="lastName-error"
-            />
-            {lastnameError && <span className="error-message">{lastnameError}</span>}
-
+            <div className="name-container">
+              <div className="name-input">
+                <label htmlFor="name">Nome:</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Seu Nome"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  aria-describedby="name-error"
+                />
+                {nameError && <span className="error-message">{nameError}</span>}
+              </div>
+              <div className="lastname-input">
+                <label htmlFor="lastName">Sobrenome:</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Seu Sobrenome"
+                  value={lastName}
+                  onChange={(e) => setLastname(e.target.value)}
+                  aria-describedby="lastName-error"
+                />
+                {lastnameError && <span className="error-message">{lastnameError}</span>}
+              </div>
+            </div>
             <label htmlFor="email">E-mail:</label>
             <input
               type="email"
@@ -348,15 +352,15 @@ const AppointmentForm = ({ addAppointment }) => {
           return (
             <div className="step-content">
               <div className='tog'>
-              <h3>Marcacao agendada</h3>
-              <button
-                className="close-button"
-                onClick={() => {
-                  setShowPopup(false);
-                  resetForm();
-                }}
-              >Fechar</button>
-            </div>
+                <h3>Marcacao agendada</h3>
+                <button
+                  className="close-button"
+                  onClick={() => {
+                    setShowPopup(false);
+                    resetForm();
+                  }}
+                >Fechar</button>
+              </div>
               <div className="progress-bar">
                 <div className="progress-point"></div>
                 <div className="progress-line2"></div>
