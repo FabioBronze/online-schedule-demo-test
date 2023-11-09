@@ -6,7 +6,7 @@ import Calendar from 'react-calendar';
 import '../globals.css'
 import 'react-calendar/dist/Calendar.css';
 import { BsArrowBarRight } from 'react-icons/bs'
-import {BsHandThumbsUp} from 'react-icons/bs'
+import { BsCheck2All } from 'react-icons/bs'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBWaUTh4SuTUe6UOES8DAmp8Kv4BmZ_otg',
@@ -36,6 +36,8 @@ const AppointmentForm = ({ addAppointment }) => {
   const [lastnameError, setLastnameError] = useState('')
   const [emailError, setEmailError] = useState('');
   const [phoneError, setPhoneError] = useState('')
+
+  const [currentTipoCorte, setCurrentTipoCorte] = useState('');
 
   const resetForm = () => {
     setName('');
@@ -156,13 +158,14 @@ const AppointmentForm = ({ addAppointment }) => {
     const day = date.getDate();
     const year = date.getFullYear();
 
-    return `Reserve em ${dayOfWeek}, ${month} ${day}, ${year}`;
+    return `Reserve para ${dayOfWeek}, ${day} ${month}, ${year}`;
   };
 
-  const openPopup = () => {
+  const openPopup = (tipoCorte) => {
     setShowPopup(true);
     document.body.classList.add('no-scroll');
     setCurrentStep(1); // Definir a etapa inicial ao abrir o popup
+    setCurrentTipoCorte(tipoCorte)
   };
 
   const nextStep = () => {
@@ -186,7 +189,7 @@ const AppointmentForm = ({ addAppointment }) => {
       case 1:
         return (
           <div className="step-content">
-            <h3>Escolha o horario</h3>
+            <h3>Data e Hora</h3>
             <div className="progress-bar">
               <div className="progress-point"></div>
               <div className="progress-line"></div>
@@ -194,6 +197,7 @@ const AppointmentForm = ({ addAppointment }) => {
               <div className="progress-line"></div>
               <div className="progress-point2"></div>
             </div>
+            <h3>Serviço - {currentTipoCorte}</h3>
             <Calendar
               locale="pt"
               onChange={(date) => setSelectedDate(date)}
@@ -252,6 +256,7 @@ const AppointmentForm = ({ addAppointment }) => {
               <div className="progress-line"></div>
               <div className="progress-point2"></div>
             </div>
+            <h3>Serviço - {currentTipoCorte}</h3>
             <label htmlFor="name">Nome:</label>
             <input
               type="text"
@@ -321,16 +326,16 @@ const AppointmentForm = ({ addAppointment }) => {
           return (
             <div className="step-content">
               <h3>Marcacao Agendada</h3>
-              <div class="progress-bar">
-                <div class="progress-point"></div>
-                <div class="progress-line2"></div>
-                <div class="progress-point"></div>
-                <div class="progress-line2"></div>
-                <div class="progress-point"></div>
+              <div className="progress-bar">
+                <div className="progress-point"></div>
+                <div className="progress-line2"></div>
+                <div className="progress-point"></div>
+                <div className="progress-line2"></div>
+                <div className="progress-point"></div>
               </div>
-              <BsHandThumbsUp size={100} className='icon'/>
-              <p>Sua marcação foi agendada com sucesso!</p>
-              <p>Verifique o seu Email.</p>
+              <BsCheck2All size={100} className='icon' />
+              <p>A sua marcação para o servico de {currentTipoCorte} foi agendada com sucesso!</p>
+              <p>Verifique o seu Email para obter mais Informacoes.</p>
               <button onClick={() => {
                 setShowPopup(false);
                 resetForm();
@@ -359,16 +364,16 @@ const AppointmentForm = ({ addAppointment }) => {
         <div className="menu">
           <div className="leftMenu">
             <ul>
-              <li onClick={openPopup}>
+              <li onClick={() => openPopup("Corte de Cabelo")}>
                 Corte de Cabelo <BsArrowBarRight />
               </li>
-              <li onClick={openPopup}>
+              <li onClick={() => openPopup("Brushing")}>
                 Brushing <BsArrowBarRight />
               </li>
               <li onClick={openPopup}>
                 Madeixas <BsArrowBarRight />
               </li>
-              <li onClick={openPopup}>
+              <li onClick={() => openPopup("Coloração")}>
                 Coloração <BsArrowBarRight />
               </li>
               <li onClick={openPopup}>
@@ -377,7 +382,7 @@ const AppointmentForm = ({ addAppointment }) => {
               <li onClick={openPopup}>
                 Alisamento <BsArrowBarRight />
               </li>
-              <li onClick={openPopup}>
+              <li onClick={() => openPopup("Mise Rolos")}>
                 Mise Rolos <BsArrowBarRight />
               </li>
             </ul>
