@@ -1,23 +1,12 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 import Calendar from 'react-calendar';
 import '../globals.css'
 import 'react-calendar/dist/Calendar.css';
 import { BsArrowBarRight } from 'react-icons/bs'
 import { BsCheck2All } from 'react-icons/bs'
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyBWaUTh4SuTUe6UOES8DAmp8Kv4BmZ_otg',
-  authDomain: 'teste-edc9c.firebaseapp.com',
-  projectId: 'teste-edc9c',
-  storageBucket: 'teste-edc9c.appspot.com',
-  messagingSenderId: '1017503897558',
-  appId: '1:1017503897558:web:e0f3f5a98bca95e0383677',
-};
-
-initializeApp(firebaseConfig);
+import firebaseApp from './firebase';
 
 const AppointmentForm = ({ addAppointment }) => {
   const [name, setName] = useState('');
@@ -31,12 +20,10 @@ const AppointmentForm = ({ addAppointment }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-
   const [nameError, setNameError] = useState('');
   const [lastnameError, setLastnameError] = useState('')
   const [emailError, setEmailError] = useState('');
   const [phoneError, setPhoneError] = useState('')
-
   const [currentTipoCorte, setCurrentTipoCorte] = useState('');
 
   const resetForm = () => {
@@ -50,26 +37,16 @@ const AppointmentForm = ({ addAppointment }) => {
   };
 
   const handlePhoneChange = (e) => {
-    // Remova todos os caracteres não numéricos do valor
     const phoneValue = e.target.value.replace(/\D/g, '');
-
-    // Divida o valor em grupos de 3 dígitos com espaço
-    let formattedPhone = '';
-    for (let i = 0; i < phoneValue.length; i++) {
-      if (i > 0 && i % 3 === 0) {
-        formattedPhone += ' ';
-      }
-      formattedPhone += phoneValue[i];
-    }
-
-    // Limitar o comprimento do número de telefone a 9 dígitos
-    if (formattedPhone.length > 9) {
-      formattedPhone = formattedPhone.slice(0, 11);
-    }
-
+  
+    const formattedPhone = phoneValue
+      .split('')
+      .map((digit, index) => (index > 0 && index % 3 === 0 ? ` ${digit}` : digit))
+      .join('')
+      .slice(0, 11);
+  
     setPhone(formattedPhone);
   };
-
 
   useEffect(() => {
     const fetchAvailableHours = async () => {
