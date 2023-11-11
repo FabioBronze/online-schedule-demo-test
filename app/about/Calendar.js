@@ -78,7 +78,6 @@ const AppointmentForm = ({ addAppointment }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentStep === 2) {
-      // Adicione validação para campos obrigatórios e e-mail
       let isValid = true;
       if (!name) {
         setNameError('Campo obrigatório');
@@ -103,7 +102,7 @@ const AppointmentForm = ({ addAppointment }) => {
       }
 
       if (!phone || phone.replace(/\D/g, '').length !== 9) {
-        setPhoneError('Telefone deve ter 9 dígitos');
+        setPhoneError('Telefone inválido');
         isValid = false;
       } else {
         setPhoneError('');
