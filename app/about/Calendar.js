@@ -68,9 +68,8 @@ const AppointmentForm = ({ addAppointment }) => {
 
     const formattedPhone = phoneValue
       .split('')
-      .map((digit, index) => (index > 0 && index % 3 === 0 ? ` ${digit}` : digit))
       .join('')
-      .slice(0, 11);
+      .slice(0, 9);
 
     setPhone(formattedPhone);
   };
