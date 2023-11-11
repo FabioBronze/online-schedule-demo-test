@@ -94,7 +94,6 @@ const AppointmentForm = ({ addAppointment }) => {
         setLastnameError('');
       }
 
-      // Validação de e-mail usando regex
       const emailRegex = /^\S+@\S+\.\S+$/;
       if (!email || !emailRegex.test(email)) {
         setEmailError('E-mail inválido');
