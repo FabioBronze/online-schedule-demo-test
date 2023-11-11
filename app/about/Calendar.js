@@ -187,9 +187,11 @@ const AppointmentForm = ({ addAppointment }) => {
               showNavigation={false}
               tileDisabled={({ date }) => {
                 const today = new Date();
-                return date.getDate() === today.getDate() &&
+                return (
+                  date.getDate() === today.getDate() &&
                   date.getMonth() === today.getMonth() &&
-                  date.getFullYear() === today.getFullYear();
+                  date.getFullYear() === today.getFullYear()
+                ) || [0, 3].includes(date.getDay());
               }}
             />
             {selectedDate ? (
