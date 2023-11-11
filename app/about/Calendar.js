@@ -101,7 +101,8 @@ const AppointmentForm = ({ addAppointment }) => {
         setEmailError('');
       }
 
-      if (!phone || phone.replace(/\D/g, '').length !== 9) {
+      const isValidPhone = phone && phone.replace(/\D/g, '').startsWith('9') && phone.replace(/\D/g, '').length === 9;
+      if (!isValidPhone) {
         setPhoneError('Telefone inválido');
         isValid = false;
       } else {
