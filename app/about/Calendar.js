@@ -6,6 +6,7 @@ import '../globals.css'
 import 'react-calendar/dist/Calendar.css';
 import { BsCheck2All } from 'react-icons/bs'
 import AppointmentMenu from './AppointmentMenu'
+import { BsX } from 'react-icons/bs';
 import firebaseApp from './firebase';
 
 const AppointmentForm = ({ addAppointment }) => {
@@ -161,13 +162,14 @@ const AppointmentForm = ({ addAppointment }) => {
           <div className="step-content">
             <div className='tog'>
               <h3>Data e Hora</h3>
-              <button
-                className="close-button"
+              <BsX
+                size={20}
+                className='close-button'
                 onClick={() => {
                   setShowPopup(false);
                   resetForm();
                 }}
-              >Fechar</button>
+              />
             </div>
             <div className="progress-bar">
               <span className="progress-point"></span>
@@ -232,8 +234,9 @@ const AppointmentForm = ({ addAppointment }) => {
           <div className="step-content">
             <div className='tog'>
               <h3>Informacoes Pessoais</h3>
-              <button
-                className="close-button"
+              <BsX
+                size={20}
+                className='close-button'
                 onClick={() => {
                   setShowPopup(false);
                   resetForm();
@@ -242,7 +245,7 @@ const AppointmentForm = ({ addAppointment }) => {
                   setEmailError('')
                   setPhoneError('')
                 }}
-              >Fechar</button>
+              />
             </div>
             <div className="progress-bar">
               <span className="progress-point"></span>
@@ -326,13 +329,14 @@ const AppointmentForm = ({ addAppointment }) => {
             <div className="step-content">
               <div className='tog'>
                 <h3>Marcacao agendada</h3>
-                <button
-                  className="close-button"
+                <BsX
+                  size={20}
+                  className='close-button'
                   onClick={() => {
                     setShowPopup(false);
                     resetForm();
                   }}
-                >Fechar</button>
+                />
               </div>
               <div className="progress-bar">
                 <span className="progress-point"></span>
