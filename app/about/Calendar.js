@@ -4,8 +4,8 @@ import { getFirestore, collection, query, where, getDocs } from 'firebase/firest
 import Calendar from 'react-calendar';
 import '../globals.css'
 import 'react-calendar/dist/Calendar.css';
-import { BsArrowBarRight } from 'react-icons/bs'
 import { BsCheck2All } from 'react-icons/bs'
+import AppointmentMenu from './AppointmentMenu'
 import firebaseApp from './firebase';
 
 const AppointmentForm = ({ addAppointment }) => {
@@ -34,7 +34,6 @@ const AppointmentForm = ({ addAppointment }) => {
       const q = query(appointmentsRef, where('date', '==', formattedDate));
       const querySnapshot = await getDocs(q);
       const appointments = querySnapshot.docs.map(doc => doc.data());
-
       const startHour = 9;
       const endHour = 18;
       const appointmentDuration = 30;
@@ -46,11 +45,9 @@ const AppointmentForm = ({ addAppointment }) => {
           hours.push({ hour, available: isHourAvailable });
         }
       }
-
       setAvailableHours(hours);
       setIsLoading(false);
     };
-
     if (selectedDate && !isNaN(selectedDate.getTime())) {
       fetchAvailableHours();
     }
@@ -356,7 +353,7 @@ const AppointmentForm = ({ addAppointment }) => {
   };
 
   return (
-    <div>
+    <>
       {showPopup ? (
         <div className='popup-overlay'>
           <div className="popup">
@@ -368,39 +365,10 @@ const AppointmentForm = ({ addAppointment }) => {
           </div>
         </div>
       ) : (
-        <div className="menu">
-          <div className="leftMenu">
-            <ul>
-              <li onClick={() => openPopup("Corte de Cabelo")}>
-                Corte de Cabelo <BsArrowBarRight />
-              </li>
-              <li onClick={() => openPopup("Brushing")}>
-                Brushing <BsArrowBarRight />
-              </li>
-              <li onClick={() => openPopup("Madeixas")}>
-                Madeixas <BsArrowBarRight />
-              </li>
-              <li onClick={() => openPopup("Coloração")}>
-                Coloração <BsArrowBarRight />
-              </li>
-              <li onClick={() => openPopup("Ondulação")}>
-                Ondulação <BsArrowBarRight />
-              </li>
-              <li onClick={() => openPopup("Alisamento")}>
-                Alisamento <BsArrowBarRight />
-              </li>
-              <li onClick={() => openPopup("Mise Rolos")}>
-                Mise Rolos <BsArrowBarRight />
-              </li>
-            </ul>
-          </div>
-          <div className="rightMenu">
-            <p>Faça clique para fazer marcações:</p>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+        <AppointmentMenu openPopup={openPopup} />
+      )};
+    </>
+  )
 }
 
 export default AppointmentForm;
