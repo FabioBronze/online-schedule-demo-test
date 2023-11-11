@@ -26,6 +26,36 @@ const AppointmentForm = ({ addAppointment }) => {
   const [phoneError, setPhoneError] = useState('')
   const [currentTipoCorte, setCurrentTipoCorte] = useState('');
 
+  useEffect(() => {
+    const fetchAvailableHours = async () => {
+      setIsLoading(true);
+      const formattedDate = selectedDate.toISOString();
+      const appointmentsRef = collection(getFirestore(), 'appointments');
+      const q = query(appointmentsRef, where('date', '==', formattedDate));
+      const querySnapshot = await getDocs(q);
+      const appointments = querySnapshot.docs.map(doc => doc.data());
+
+      const startHour = 9;
+      const endHour = 18;
+      const appointmentDuration = 30;
+      const hours = [];
+      for (let currentHour = startHour; currentHour <= endHour; currentHour++) {
+        for (let currentMinute = 0; currentMinute < 60; currentMinute += appointmentDuration) {
+          const hour = `${currentHour.toString().padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
+          const isHourAvailable = !appointments.some(appointment => appointment.hour === hour);
+          hours.push({ hour, available: isHourAvailable });
+        }
+      }
+
+      setAvailableHours(hours);
+      setIsLoading(false);
+    };
+
+    if (selectedDate && !isNaN(selectedDate.getTime())) {
+      fetchAvailableHours();
+    }
+  }, [selectedDate]);
+
   const resetForm = () => {
     setName('');
     setLastname('')
@@ -38,46 +68,15 @@ const AppointmentForm = ({ addAppointment }) => {
 
   const handlePhoneChange = (e) => {
     const phoneValue = e.target.value.replace(/\D/g, '');
-  
+
     const formattedPhone = phoneValue
       .split('')
       .map((digit, index) => (index > 0 && index % 3 === 0 ? ` ${digit}` : digit))
       .join('')
       .slice(0, 11);
-  
+
     setPhone(formattedPhone);
   };
-
-  useEffect(() => {
-    const fetchAvailableHours = async () => {
-      setIsLoading(true);
-      const formattedDate = selectedDate.toISOString();
-      const appointmentsRef = collection(getFirestore(), 'appointments');
-      const q = query(appointmentsRef, where('date', '==', formattedDate));
-      const querySnapshot = await getDocs(q);
-      const appointments = querySnapshot.docs.map(doc => doc.data());
-
-      let currentHour = 9;
-      let currentMinute = 0;
-      const hours = [];
-      while (currentHour <= 17) {
-        const hour = `${currentHour.toString().padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
-        const isHourAvailable = !appointments.some(appointment => appointment.hour === hour);
-        hours.push({ hour, available: isHourAvailable });
-        currentMinute += 30;
-        if (currentMinute >= 60) {
-          currentHour += 1;
-          currentMinute = 0;
-        }
-      }
-      setAvailableHours(hours);
-      setIsLoading(false);
-    };
-
-    if (selectedDate && !isNaN(selectedDate.getTime())) {
-      fetchAvailableHours();
-    }
-  }, [selectedDate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
