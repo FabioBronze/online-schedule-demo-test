@@ -170,11 +170,11 @@ const AppointmentForm = ({ addAppointment }) => {
               >Fechar</button>
             </div>
             <div className="progress-bar">
-              <div className="progress-point"></div>
-              <div className="progress-line"></div>
-              <div className="progress-point2"></div>
-              <div className="progress-line"></div>
-              <div className="progress-point2"></div>
+              <span className="progress-point"></span>
+              <span className="progress-line"></span>
+              <span className="progress-point2"></span>
+              <span className="progress-line"></span>
+              <span className="progress-point2"></span>
             </div>
             <h3>Serviço - {currentTipoCorte}</h3>
             <Calendar
@@ -242,11 +242,11 @@ const AppointmentForm = ({ addAppointment }) => {
               >Fechar</button>
             </div>
             <div className="progress-bar">
-              <div className="progress-point"></div>
-              <div className="progress-line2"></div>
-              <div className="progress-point"></div>
-              <div className="progress-line"></div>
-              <div className="progress-point2"></div>
+              <span className="progress-point"></span>
+              <span className="progress-line2"></span>
+              <span className="progress-point"></span>
+              <span className="progress-line"></span>
+              <span className="progress-point2"></span>
             </div>
             <h3>Serviço - {currentTipoCorte}</h3>
             <div className="name-container">
@@ -332,11 +332,11 @@ const AppointmentForm = ({ addAppointment }) => {
                 >Fechar</button>
               </div>
               <div className="progress-bar">
-                <div className="progress-point"></div>
-                <div className="progress-line2"></div>
-                <div className="progress-point"></div>
-                <div className="progress-line2"></div>
-                <div className="progress-point"></div>
+                <span className="progress-point"></span>
+                <span className="progress-line2"></span>
+                <span className="progress-point"></span>
+                <span className="progress-line2"></span>
+                <span className="progress-point"></span>
               </div>
               <BsCheck2All size={100} className='icon' />
               <p>A sua marcação para o servico de {currentTipoCorte} foi agendada com sucesso!</p>
