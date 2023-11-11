@@ -177,6 +177,7 @@ const AppointmentForm = ({ addAppointment }) => {
               <span className="progress-point2"></span>
             </div>
             <h3>Serviço - {currentTipoCorte}</h3>
+            <h3>Horário Disponíveis</h3>
             <Calendar
               locale="pt"
               onChange={(date) => setSelectedDate(date)}
