@@ -160,7 +160,7 @@ const AppointmentForm = ({ addAppointment }) => {
       case 1:
         return (
           <div className="step-content">
-            <div className='tog'>
+            <div className='step-content-title'>
               <h3>Data e Hora</h3>
               <BsX
                 size={20}
@@ -232,7 +232,7 @@ const AppointmentForm = ({ addAppointment }) => {
       case 2:
         return (
           <div className="step-content">
-            <div className='tog'>
+            <div className='step-content-title'>
               <h3>Informacoes Pessoais</h3>
               <BsX
                 size={20}
@@ -327,7 +327,7 @@ const AppointmentForm = ({ addAppointment }) => {
         if (currentStep === 3) {
           return (
             <div className="step-content">
-              <div className='tog'>
+              <div className='step-content-title'>
                 <h3>Marcacao agendada</h3>
                 <BsX
                   size={20}

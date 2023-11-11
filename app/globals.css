@@ -19,44 +19,67 @@
   text-align: center;
 }
 
-.react-calendar { 
+.react-calendar {
   color: #000;
   margin: 2rem auto;
   width: 400px !important;
   line-height: 2rem !important;
- }
+}
 
- .react-calendar__month-view__weekdays__weekday {
-  color: #000000af;
+.react-calendar__month-view__weekdays__weekday abbr[title] {
+  color: #000;
   font-size: 0.7rem;
- }
+  text-decoration: none;
+}
 
- .react-calendar__month-view__days__day {
+.react-calendar__month-view__days__day {
   color: #000 !important;
- }
+}
 
- .react-calendar__tile--active {
-  color: #fff !important;
-  background: #000000e5 !important;
-  border-radius: 10%;
- } 
+.react-calendar__tile--active {
+  background: transparent !important;
+  position: relative;
+}
 
- .react-calendar__tile--now {
-  background: #fff !important;
-  color: #000 !important;
- }
+.react-calendar__tile--active:after {
+  content: "";
+  width: 3px; 
+  height: 3px; 
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .react-calendar__tile {
-  padding: 0.7rem !important;
-  margin: 1px 0 !important;
+  padding: 1rem !important;
+  margin: 0.2rem 0 !important;
+  position: relative;
+  background: transparent !important;
 }
-.react-calendar__tile:hover {
-  border-radius: 10%;
+
+.react-calendar__tile:hover:after {
+  content: "";
+  width: 3px; 
+  height: 3px; 
+  background: #0000003f;
+  border-radius: 50%;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
- .react-calendar__tile:disabled {
-  background-color: transparent !important;
-  color: #00000067 !important;
- }
+
+.react-calendar__tile:disabled {
+  background: transparent !important;
+  color: #00000083 !important;
+}
+
+.react-calendar__tile:disabled:after {
+  background: transparent;
+}
 
 .lis {
   margin: 1rem 0;
@@ -117,7 +140,8 @@
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   height: 600px;
-  overflow-y: auto; /* Enable scroll for the popup */
+  overflow-y: auto;
+  /* Enable scroll for the popup */
 }
 
 input[type=number]::-webkit-inner-spin-button {
@@ -161,7 +185,7 @@ input[type=number]::-webkit-inner-spin-button {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.411);
+  background: rgba(40, 51, 61, .7);
   z-index: 999;
   display: flex;
   justify-content: center;
@@ -169,8 +193,7 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .popup-content {
-  width: 500px;
-  height: 80%;
+  width: 440px;
   background-color: white;
   padding: 20px;
 }
@@ -192,36 +215,49 @@ input[type=number]::-webkit-inner-spin-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; /* Ajuste a largura conforme desejado */
-  margin: 1rem auto; /* Ajuste as margens conforme desejado */
+  width: 100%;
+  /* Ajuste a largura conforme desejado */
+  margin: 1rem auto;
+  /* Ajuste as margens conforme desejado */
 }
 
 .progress-point {
   position: relative;
-  width: 6px; /* Diâmetro das bolas */
-  height: 6px; /* Diâmetro das bolas */
-  background-color: #1d90f5; /* Cor das bolas */
-  border-radius: 50%; /* Para criar a forma circular */
+  width: 3px;
+  /* Diâmetro das bolas */
+  height: 3px;
+  /* Diâmetro das bolas */
+  background-color: #1d90f5;
+  /* Cor das bolas */
+  border-radius: 50%;
+  /* Para criar a forma circular */
 }
 
 .progress-point2 {
   position: relative;
-  width: 6px; /* Diâmetro das bolas */
-  height: 6px; /* Diâmetro das bolas */
-  border-radius: 50%; /* Para criar a forma circular */
+  width: 3px;
+  /* Diâmetro das bolas */
+  height: 3px;
+  /* Diâmetro das bolas */
+  border-radius: 50%;
+  /* Para criar a forma circular */
   background: #cccccccc;
 }
 
 .progress-line {
   flex: 1;
-  height: 2px; /* Altura da linha */
-  background-color: #cccccccc; /* Cor da linha */
+  height: 1px;
+  /* Altura da linha */
+  background-color: #cccccccc;
+  /* Cor da linha */
 }
 
 .progress-line2 {
   flex: 1;
-  height: 2px; /* Altura da linha */
-  background-color: #1d90f5; /* Cor da linha */
+  height: 1px;
+  /* Altura da linha */
+  background-color: #1d90f5;
+  /* Cor da linha */
 }
 
 .step-content .icon {
@@ -247,11 +283,16 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 @keyframes spin {
-  0% { transform: rotate(360deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
-.tog {
+.step-content-title {
   display: flex;
   justify-content: space-between;
 }
@@ -270,7 +311,8 @@ input[type=number]::-webkit-inner-spin-button {
   justify-content: space-between;
 }
 
-.name-input, .lastname-input {
+.name-input,
+.lastname-input {
   flex: 1;
   margin-right: 1.6rem;
 }
