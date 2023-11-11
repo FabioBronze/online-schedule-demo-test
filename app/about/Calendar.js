@@ -155,7 +155,6 @@ const AppointmentForm = ({ addAppointment }) => {
       setPhoneError('')
     }
   };
-
   const renderPopupContent = () => {
     switch (currentStep) {
       case 1:
