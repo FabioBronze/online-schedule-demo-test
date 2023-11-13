@@ -1,14 +1,7 @@
-* {
-  font-family: sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-.react-calendar,
-.react-calendar *,
-.react-calendar *:before,
-.react-calendar *:after {
-  border-color: transparent !important;
-  width: 400px;
-  font-weight: 400;
+* {
+  font-family: 'Poppins', sans-serif;
 }
 
 .hours {
@@ -20,8 +13,10 @@
 }
 
 .react-calendar {
+  border-color: transparent !important;
   color: #000;
-  margin: 2rem auto;
+  font-weight: 400;
+  margin: 1rem auto 2rem auto;
   width: 400px !important;
   line-height: 2rem !important;
 }
@@ -34,6 +29,7 @@
 
 .react-calendar__month-view__days__day {
   color: #000 !important;
+  font-size: 0.8rem !important;
 }
 
 .react-calendar__tile--active {
@@ -43,8 +39,8 @@
 
 .react-calendar__tile--active:after {
   content: "";
-  width: 3px; 
-  height: 3px; 
+  width: 3px;
+  height: 3px;
   background: #000;
   border-radius: 50%;
   position: absolute;
@@ -54,16 +50,15 @@
 }
 
 .react-calendar__tile {
-  padding: 1rem !important;
-  margin: 0.2rem 0 !important;
+  padding: 0.9rem 0 !important;
   position: relative;
   background: transparent !important;
 }
 
 .react-calendar__tile:hover:after {
   content: "";
-  width: 3px; 
-  height: 3px; 
+  width: 3px;
+  height: 3px;
   background: #0000003f;
   border-radius: 50%;
   position: absolute;
@@ -74,7 +69,7 @@
 
 .react-calendar__tile:disabled {
   background: transparent !important;
-  color: #00000083 !important;
+  color: #00000054 !important;
 }
 
 .react-calendar__tile:disabled:after {
@@ -137,9 +132,9 @@
   margin: 0 auto;
   z-index: 1000;
   background-color: white;
-  padding: 20px;
+  padding: 2rem;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  height: 600px;
+  height: 70%;
   overflow-y: auto;
   /* Enable scroll for the popup */
 }
@@ -195,11 +190,14 @@ input[type=number]::-webkit-inner-spin-button {
 .popup-content {
   width: 440px;
   background-color: white;
-  padding: 20px;
 }
 
 .no-scroll {
   overflow: hidden;
+}
+
+.ul {
+  margin-left: -40px;
 }
 
 .error-message {
@@ -217,7 +215,7 @@ input[type=number]::-webkit-inner-spin-button {
   align-items: center;
   width: 100%;
   /* Ajuste a largura conforme desejado */
-  margin: 1rem auto;
+  margin: 1rem auto 2rem auto;
   /* Ajuste as margens conforme desejado */
 }
 
@@ -231,6 +229,21 @@ input[type=number]::-webkit-inner-spin-button {
   /* Cor das bolas */
   border-radius: 50%;
   /* Para criar a forma circular */
+}
+
+.text-division {
+  background: #f6f8fc;
+  padding: 0.4rem 0.4rem 0.4rem 1rem;
+  border-radius: 10px;
+}
+
+.text-division p:first-child {
+  font-size: 0.9rem;
+}
+
+.text-division p:last-child {
+  font-size: 0.7rem;
+  margin-top: -0.7rem;
 }
 
 .progress-point2 {
@@ -267,11 +280,6 @@ input[type=number]::-webkit-inner-spin-button {
   color: #1d90f5;
 }
 
-.step-content p {
-  text-align: center;
-  font-size: 1.2rem;
-}
-
 .loading-animation {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-top: 1px solid #1d90f5;
@@ -295,15 +303,21 @@ input[type=number]::-webkit-inner-spin-button {
 .step-content-title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-top: -2rem;
 }
 
 .close-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 10px;
   padding: 5px;
   cursor: pointer;
+}
+
+.division {
+  margin: -20px -30px 3rem -30px;
+  height: 1px;
+  background-color: #ccccccb6;
+  border: none;
 }
 
 .name-container {
@@ -318,5 +332,7 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .text-sh {
-  margin-top: 2.4rem;
+  font-size: 0.8rem;
+  margin-top: 3rem;
+  text-align: center;
 }

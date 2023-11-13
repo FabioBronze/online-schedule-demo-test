@@ -161,7 +161,7 @@ const AppointmentForm = ({ addAppointment }) => {
         return (
           <div className="step-content">
             <div className='step-content-title'>
-              <h3>Data e Hora</h3>
+              <p>Reservar Consulta</p>
               <BsX
                 size={20}
                 className='close-button'
@@ -171,6 +171,8 @@ const AppointmentForm = ({ addAppointment }) => {
                 }}
               />
             </div>
+            <hr className='division' />
+            <p>Serviço - {currentTipoCorte}</p>
             <div className="progress-bar">
               <span className="progress-point"></span>
               <span className="progress-line"></span>
@@ -178,8 +180,10 @@ const AppointmentForm = ({ addAppointment }) => {
               <span className="progress-line"></span>
               <span className="progress-point2"></span>
             </div>
-            <h3>Serviço - {currentTipoCorte}</h3>
-            <h3>Horário Disponíveis</h3>
+            <div className='text-division'>
+              <p>Horário Disponíveis</p>
+              <p>Escolha uma data</p>
+            </div>
             <Calendar
               locale="pt"
               onChange={(date) => setSelectedDate(date)}
@@ -233,20 +237,18 @@ const AppointmentForm = ({ addAppointment }) => {
         return (
           <div className="step-content">
             <div className='step-content-title'>
-              <h3>Informacoes Pessoais</h3>
+              <p>Reservar Consulta</p>
               <BsX
                 size={20}
                 className='close-button'
                 onClick={() => {
                   setShowPopup(false);
                   resetForm();
-                  setNameError('')
-                  setLastnameError('')
-                  setEmailError('')
-                  setPhoneError('')
                 }}
               />
             </div>
+            <hr className='division' />
+            <p>Serviço - {currentTipoCorte}</p>
             <div className="progress-bar">
               <span className="progress-point"></span>
               <span className="progress-line2"></span>
@@ -254,7 +256,7 @@ const AppointmentForm = ({ addAppointment }) => {
               <span className="progress-line"></span>
               <span className="progress-point2"></span>
             </div>
-            <h3>Serviço - {currentTipoCorte}</h3>
+            <p>Informacoes Pessoais</p>
             <div className="name-container">
               <div className="name-input">
                 <label htmlFor="name">Nome:</label>
@@ -328,7 +330,7 @@ const AppointmentForm = ({ addAppointment }) => {
           return (
             <div className="step-content">
               <div className='step-content-title'>
-                <h3>Marcacao agendada</h3>
+                <p>Reservar Consulta</p>
                 <BsX
                   size={20}
                   className='close-button'
@@ -338,6 +340,8 @@ const AppointmentForm = ({ addAppointment }) => {
                   }}
                 />
               </div>
+              <hr className='division' />
+              <p>Serviço - {currentTipoCorte}</p>
               <div className="progress-bar">
                 <span className="progress-point"></span>
                 <span className="progress-line2"></span>
