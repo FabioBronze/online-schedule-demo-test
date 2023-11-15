@@ -156,22 +156,29 @@ const AppointmentForm = ({ addAppointment }) => {
       setPhoneError('')
     }
   };
+
+  const renderPopupHeader = () => {
+    return (
+      <div className='step-content-title'>
+        <p>Reservar Consulta</p>
+        <BsX
+          size={20}
+          className='close-button'
+          onClick={() => {
+            setShowPopup(false);
+            resetForm();
+          }}
+        />
+      </div>
+    );
+  };
+
   const renderPopupContent = () => {
     switch (currentStep) {
       case 1:
         return (
           <div className="step-content">
-            <div className='step-content-title'>
-              <p>Reservar Consulta</p>
-              <BsX
-                size={20}
-                className='close-button'
-                onClick={() => {
-                  setShowPopup(false);
-                  resetForm();
-                }}
-              />
-            </div>
+            {renderPopupHeader()}
             <hr className='division' />
             <p>Serviço - {currentTipoCorte}</p>
             <div className="progress-bar">
@@ -237,17 +244,7 @@ const AppointmentForm = ({ addAppointment }) => {
       case 2:
         return (
           <div className="step-content">
-            <div className='step-content-title'>
-              <p>Reservar Consulta</p>
-              <BsX
-                size={20}
-                className='close-button'
-                onClick={() => {
-                  setShowPopup(false);
-                  resetForm();
-                }}
-              />
-            </div>
+            {renderPopupHeader()}
             <hr className='division' />
             <p>Serviço - {currentTipoCorte}</p>
             <div className="progress-bar">
@@ -331,17 +328,7 @@ const AppointmentForm = ({ addAppointment }) => {
         if (currentStep === 3) {
           return (
             <div className="step-content">
-              <div className='step-content-title'>
-                <p>Reservar Consulta</p>
-                <BsX
-                  size={20}
-                  className='close-button'
-                  onClick={() => {
-                    setShowPopup(false);
-                    resetForm();
-                  }}
-                />
-              </div>
+              {renderPopupHeader()}
               <hr className='division' />
               <p>Serviço - {currentTipoCorte}</p>
               <div className="progress-bar">
