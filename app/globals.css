@@ -275,10 +275,14 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .step-content .icon {
-  margin: 6rem auto;
+  color: #1d90f5;
+}
+
+.finish-schedule {
   display: flex;
   align-items: center;
-  color: #1d90f5;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .loading-animation {

@@ -4,7 +4,7 @@ import { getFirestore, collection, query, where, getDocs } from 'firebase/firest
 import Calendar from 'react-calendar';
 import '../globals.css'
 import 'react-calendar/dist/Calendar.css';
-import { BsCheck2All } from 'react-icons/bs'
+import { IoCheckmarkDone } from "react-icons/io5";
 import AppointmentMenu from './AppointmentMenu'
 import { BsX } from 'react-icons/bs';
 import firebaseApp from './firebase';
@@ -256,7 +256,10 @@ const AppointmentForm = ({ addAppointment }) => {
               <span className="progress-line"></span>
               <span className="progress-point2"></span>
             </div>
-            <p>Informacoes Pessoais</p>
+            <div className='text-division'>
+              <p>Informacoes Pessoais</p>
+              <p>Preencha os dados</p>
+            </div>
             <div className="name-container">
               <div className="name-input">
                 <label htmlFor="name">Nome:</label>
@@ -308,7 +311,6 @@ const AppointmentForm = ({ addAppointment }) => {
               aria-describedby="phone-error"
             />
             {phoneError && <span className="error-message">{phoneError}</span>}
-
             <label>Observações:</label>
             <input
               type="text"
@@ -318,7 +320,6 @@ const AppointmentForm = ({ addAppointment }) => {
               value={observations}
               onChange={(e) => setObservations(e.target.value)}
             />
-
             <button onClick={prevStep}>Etapa Anterior</button>
             <button type="submit" onClick={handleSubmit}>
               Agendar
@@ -349,9 +350,21 @@ const AppointmentForm = ({ addAppointment }) => {
                 <span className="progress-line2"></span>
                 <span className="progress-point"></span>
               </div>
-              <BsCheck2All size={100} className='icon' />
-              <p>A sua marcação para o servico de {currentTipoCorte} foi agendada com sucesso!</p>
-              <p>Verifique o seu Email para obter mais Informacoes.</p>
+              <div className='text-division'>
+                <p>Marcação Agendada! <IoCheckmarkDone size={18} className='icon' />
+                </p>
+                <p>Verifique o seu e-mail</p>
+              </div>
+              <div className='finish-schedule'>
+                <button onClick={() => {
+                  resetForm();
+                  setCurrentStep(1);
+                }}>Agendar Novamente</button>
+                <button onClick={() => {
+                  setShowPopup(false);
+                  resetForm();
+                }}>Fechar</button>
+              </div>
             </div>
           );
         }
