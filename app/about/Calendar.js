@@ -5,6 +5,7 @@ import Calendar from 'react-calendar';
 import '../globals.css'
 import 'react-calendar/dist/Calendar.css';
 import { IoCheckmarkDone } from "react-icons/io5";
+import { FiCornerLeftDown } from "react-icons/fi";
 import AppointmentMenu from './AppointmentMenu'
 import { BsX } from 'react-icons/bs';
 import firebaseApp from './firebase';
@@ -353,8 +354,10 @@ const AppointmentForm = ({ addAppointment }) => {
               <div className='text-division'>
                 <p>Marcação Agendada! <IoCheckmarkDone size={18} className='icon' />
                 </p>
-                <p>Verifique o seu e-mail</p>
+                <p>Verifique o seu e-mail </p>
               </div>
+              <p>Boa! A sua marcação foi agendada com sucesso! <IoCheckmarkDone size={18} className='icon' /></p>
+              <p>Para prosseguir, clique num dos botoes abaixo. <FiCornerLeftDown size={18} className='icon' /> </p>
               <div className='finish-schedule'>
                 <button onClick={() => {
                   resetForm();
