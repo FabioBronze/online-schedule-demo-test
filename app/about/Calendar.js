@@ -209,7 +209,7 @@ const AppointmentForm = ({ addAppointment }) => {
             />
             {selectedDate ? (
               <div>
-                <p className="hours">{getReservationDateMessage(selectedDate)}</p>
+                <p className="schedule-time">{getReservationDateMessage(selectedDate)}</p>
                 {isLoading ? (
                   <div className="loading-animation"></div>
                 ) : isDayFullyBooked() ? (
@@ -294,7 +294,6 @@ const AppointmentForm = ({ addAppointment }) => {
               aria-describedby="email-error"
             />
             {emailError && <span className="error-message">{emailError}</span>}
-
             <label htmlFor="phone">Telefone:</label>
             <input
               type="text"

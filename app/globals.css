@@ -4,14 +4,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.hours {
-  text-align: center;
-}
-
-.hourst {
-  text-align: center;
-}
-
 .react-calendar {
   border-color: transparent !important;
   color: #000;
@@ -76,6 +68,109 @@
   background: transparent;
 }
 
+.step-content input {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem;
+  margin: 0.2rem 0 1rem 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.step-content button {
+  padding: 0.6rem;
+  cursor: pointer;
+  margin: 1rem 0.5rem 0.5rem 0;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background: transparent;
+  color: #000;
+  transition: .1s;
+}
+
+.step-content button:hover {
+  background: #ccc;
+}
+
+.step-content label {
+  font-size: 0.8rem;
+  margin: 1rem 0;
+}
+
+.step-content .icon {
+  color: #1d90f5;
+}
+
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 2rem auto 1rem auto;
+}
+
+.progress-point {
+  position: relative;
+  width: 3px;
+  height: 3px;
+  background-color: #1d90f5;
+  border-radius: 50%;
+}
+
+.progress-point2 {
+  position: relative;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #cccccccc;
+}
+
+.progress-line {
+  flex: 1;
+  height: 1px;
+  background-color: #cccccccc;
+}
+
+.progress-line2 {
+  flex: 1;
+  height: 1px;
+  background-color: #1d90f5;
+}
+
+.step-content-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-top: -2rem;
+}
+
+.close-button {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.schedule-time {
+  text-align: center;
+}
+
+
+.loading-animation {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid #1d90f5;
+  border-radius: 50%;
+  margin: 3rem auto;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+.ul-list {
+  margin-left: -40px;
+}
+
 .lists {
   margin: 1rem 0;
   text-align: center;
@@ -87,8 +182,57 @@
   transition: .1s;
 }
 
-.lis:hover {
+.lists:hover {
   background-color: #cccccc5b;
+}
+
+.schedule-text {
+  font-size: 0.8rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.text-division {
+  background: #f6f8fc;
+  padding: 0.4rem 0.4rem 0.4rem 1rem;
+  border-radius: 10px;
+  margin: 2rem 0;
+}
+
+.text-division p:first-child {
+  font-size: 0.9rem;
+}
+
+.text-division p:last-child {
+  font-size: 0.7rem;
+  margin-top: -0.7rem;
+}
+
+.name-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name-input,
+.lastname-input {
+  flex: 1;
+  margin-right: 1.6rem;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  display: flex;
+  margin-top: -0.9rem;
+  margin-bottom: 1rem;
+  flex-direction: column;
+}
+
+.finish-schedule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .menu {
@@ -136,41 +280,6 @@
   overflow-y: auto;
 }
 
-input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-.step-content input {
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  padding: 0.8rem;
-  margin: 0.2rem 0 1rem 0;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  outline: none;
-}
-
-.step-content button {
-  padding: 0.6rem;
-  cursor: pointer;
-  margin: 1rem 0.5rem 0.5rem 0;
-  border-radius: 5px;
-  border: 1px solid #000;
-  background: transparent;
-  color: #000;
-  transition: .1s;
-}
-
-.step-content button:hover {
-  background: #ccc;
-}
-
-.step-content label {
-  font-size: 0.8rem;
-  margin: 1rem 0;
-}
-
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -192,101 +301,8 @@ input[type=number]::-webkit-inner-spin-button {
   overflow: hidden;
 }
 
-.ul-list {
-  margin-left: -40px;
-}
-
-.error-message {
-  color: red;
-  font-size: 0.8rem;
-  display: flex;
-  margin-top: -0.9rem;
-  margin-bottom: 1rem;
-  flex-direction: column;
-}
-
-.progress-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin: 2rem auto 1rem auto;
-}
-
-.progress-point {
-  position: relative;
-  width: 3px;
-  /* Diâmetro das bolas */
-  height: 3px;
-  /* Diâmetro das bolas */
-  background-color: #1d90f5;
-  /* Cor das bolas */
-  border-radius: 50%;
-  /* Para criar a forma circular */
-}
-
-.text-division {
-  background: #f6f8fc;
-  padding: 0.4rem 0.4rem 0.4rem 1rem;
-  border-radius: 10px;
-  margin: 2rem 0;
-}
-
-.text-division p:first-child {
-  font-size: 0.9rem;
-}
-
-.text-division p:last-child {
-  font-size: 0.7rem;
-  margin-top: -0.7rem;
-}
-
-.progress-point2 {
-  position: relative;
-  width: 3px;
-  /* Diâmetro das bolas */
-  height: 3px;
-  /* Diâmetro das bolas */
-  border-radius: 50%;
-  /* Para criar a forma circular */
-  background: #cccccccc;
-}
-
-.progress-line {
-  flex: 1;
-  height: 1px;
-  /* Altura da linha */
-  background-color: #cccccccc;
-  /* Cor da linha */
-}
-
-.progress-line2 {
-  flex: 1;
-  height: 1px;
-  /* Altura da linha */
-  background-color: #1d90f5;
-  /* Cor da linha */
-}
-
-.step-content .icon {
-  color: #1d90f5;
-}
-
-.finish-schedule {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.loading-animation {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-top: 1px solid #1d90f5;
-  border-radius: 50%;
-  margin: 3rem auto;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 @keyframes spin {
@@ -297,34 +313,4 @@ input[type=number]::-webkit-inner-spin-button {
   100% {
     transform: rotate(0deg);
   }
-}
-
-.step-content-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  margin-top: -2rem;
-}
-
-.close-button {
-  padding: 5px;
-  cursor: pointer;
-}
-
-.name-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.name-input,
-.lastname-input {
-  flex: 1;
-  margin-right: 1.6rem;
-}
-
-.schedule-text {
-  font-size: 0.8rem;
-  margin-top: 3rem;
-  text-align: center;
 }
