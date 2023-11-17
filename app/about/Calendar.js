@@ -180,13 +180,13 @@ const AppointmentForm = ({ addAppointment }) => {
             {renderPopupHeader()}
             <hr className='division' />
             <p>Serviço - {currentTipoCorte}</p>
-            <div className="progress-bar">
+            <span className="progress-bar">
               <span className="progress-point"></span>
               <span className="progress-line"></span>
               <span className="progress-point2"></span>
               <span className="progress-line"></span>
               <span className="progress-point2"></span>
-            </div>
+            </span>
             <div className='text-division'>
               <p>Horário Disponíveis</p>
               <p>Escolha uma data</p>
@@ -246,13 +246,13 @@ const AppointmentForm = ({ addAppointment }) => {
             {renderPopupHeader()}
             <hr className='division' />
             <p>Serviço - {currentTipoCorte}</p>
-            <div className="progress-bar">
+            <span className="progress-bar">
               <span className="progress-point"></span>
               <span className="progress-line2"></span>
               <span className="progress-point"></span>
               <span className="progress-line"></span>
               <span className="progress-point2"></span>
-            </div>
+            </span>
             <div className='text-division'>
               <p>Informações Pessoais</p>
               <p>Preencha os dados</p>
@@ -330,13 +330,13 @@ const AppointmentForm = ({ addAppointment }) => {
               {renderPopupHeader()}
               <hr className='division' />
               <p>Serviço - {currentTipoCorte}</p>
-              <div className="progress-bar">
+              <span className="progress-bar">
                 <span className="progress-point"></span>
                 <span className="progress-line2"></span>
                 <span className="progress-point"></span>
                 <span className="progress-line2"></span>
                 <span className="progress-point"></span>
-              </div>
+              </span>
               <div className='text-division'>
                 <p>Marcação Agendada! <IoCheckmarkDone size={18} className='icon' />
                 </p>
