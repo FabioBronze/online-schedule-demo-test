@@ -19,21 +19,21 @@ const Calendar = () => {
         }
         return response.text();
       })
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        console.log('Agendamento realizado com sucesso!');
         setAppointments([...appointments, appointment]);
       })
       .catch((error) => {
         console.log('Erro ao agendar:', error);
       });
   };
-  
+
 
   return (
     <div>
-      <h1>Calendário de Agendamento</h1>
+      <h1 style={{ textAlign: 'center' }}>My Freelance Scheduling Calendar (DEMO VERSION)</h1>
       <AppointmentForm addAppointment={addAppointment} />
-    </div>
+    </div >
   );
 };
 

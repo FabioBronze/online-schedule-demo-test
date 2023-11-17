@@ -128,16 +128,12 @@
 }
 
 .popup {
-  /* Other styles for your popup */
   position: fixed;
-  margin: 0 auto;
-  z-index: 1000;
   background-color: white;
   padding: 2rem;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   height: 600px;
   overflow-y: auto;
-  /* Enable scroll for the popup */
 }
 
 input[type=number]::-webkit-inner-spin-button {
@@ -182,7 +178,6 @@ input[type=number]::-webkit-inner-spin-button {
   width: 100%;
   height: 100%;
   background: rgba(40, 51, 61, .7);
-  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;

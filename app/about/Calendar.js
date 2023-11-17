@@ -5,7 +5,6 @@ import Calendar from 'react-calendar';
 import '../globals.css'
 import 'react-calendar/dist/Calendar.css';
 import { IoCheckmarkDone } from "react-icons/io5";
-import { FiCornerLeftDown } from "react-icons/fi";
 import AppointmentMenu from './AppointmentMenu'
 import { BsX } from 'react-icons/bs';
 import firebaseApp from './firebase';
