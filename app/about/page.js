@@ -30,10 +30,10 @@ const Calendar = () => {
 
 
   return (
-    <div>
+    <section>
       <h1 style={{ textAlign: 'center' }}>My Freelance Scheduling Calendar (DEMO VERSION)</h1>
       <AppointmentForm addAppointment={addAppointment} />
-    </div >
+    </section >
   );
 };
 
