@@ -216,12 +216,12 @@ const AppointmentForm = ({ addAppointment }) => {
                 ) : isDayFullyBooked() ? (
                   <p>Todos os horários para este dia estão preenchidos.</p>
                 ) : (
-                  <ul className="ul">
+                  <ul className="ul-list">
                     {availableHours
                       .filter((hourObj) => hourObj.available)
                       .map((hourObj) => (
                         <li
-                          className="lis"
+                          className="lists"
                           key={hourObj.hour}
                           onClick={() => {
                             setSelectedHour(hourObj.hour);
@@ -236,7 +236,7 @@ const AppointmentForm = ({ addAppointment }) => {
                 )}
               </div>
             ) : (
-              <p className='text-sh'>Escolha um dia para fazer a sua marcação</p>
+              <p className='schedule-text'>Escolha um dia para fazer a sua marcação</p>
             )}
           </div>
         );
@@ -365,9 +365,9 @@ const AppointmentForm = ({ addAppointment }) => {
   return (
     <>
       {showPopup ? (
-        <div className='popup-overlay'>
-          <div className="popup">
-            <div className="popup-content">
+        <div className='modal-overlay'>
+          <div className="modal">
+            <div className="modal-content">
               <form autoComplete='on'>
                 {renderPopupContent()}
               </form>

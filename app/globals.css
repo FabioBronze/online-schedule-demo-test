@@ -76,7 +76,7 @@
   background: transparent;
 }
 
-.lis {
+.lists {
   margin: 1rem 0;
   text-align: center;
   list-style-type: none;
@@ -127,7 +127,7 @@
   margin: 0 auto;
 }
 
-.popup {
+.modal {
   position: fixed;
   background-color: white;
   padding: 2rem;
@@ -171,7 +171,7 @@ input[type=number]::-webkit-inner-spin-button {
   margin: 1rem 0;
 }
 
-.popup-overlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -183,7 +183,7 @@ input[type=number]::-webkit-inner-spin-button {
   align-items: center;
 }
 
-.popup-content {
+.modal-content {
   width: 440px;
   background-color: white;
 }
@@ -192,7 +192,7 @@ input[type=number]::-webkit-inner-spin-button {
   overflow: hidden;
 }
 
-.ul {
+.ul-list {
   margin-left: -40px;
 }
 
@@ -332,7 +332,7 @@ input[type=number]::-webkit-inner-spin-button {
   margin-right: 1.6rem;
 }
 
-.text-sh {
+.schedule-text {
   font-size: 0.8rem;
   margin-top: 3rem;
   text-align: center;
