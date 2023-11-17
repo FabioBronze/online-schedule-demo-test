@@ -377,7 +377,7 @@ const AppointmentForm = ({ addAppointment }) => {
         </div>
       ) : (
         <AppointmentMenu openPopup={openPopup} />
-      )};
+      )}
     </>
   )
 }

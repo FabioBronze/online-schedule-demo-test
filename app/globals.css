@@ -100,7 +100,8 @@
 }
 
 .leftMenu {
-  width: 100%;
+  width: 800px;
+  flex: 1;
   margin: 0 2rem;
   transform: .1s;
 }
@@ -121,7 +122,7 @@
 }
 
 .rightMenu {
-  width: 2800px;
+  flex: 2;
   text-align: center;
   margin: 0 auto;
 }
