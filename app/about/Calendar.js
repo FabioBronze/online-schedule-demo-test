@@ -315,7 +315,7 @@ const AppointmentForm = ({ addAppointment }) => {
               value={observations}
               onChange={(e) => setObservations(e.target.value)}
             />
-            <button onClick={prevStep}>Etapa Anterior</button>
+            <button onClick={prevStep}>Voltar</button>
             <button type="submit" onClick={handleSubmit}>
               Agendar
             </button>
