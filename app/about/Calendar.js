@@ -255,7 +255,7 @@ const AppointmentForm = ({ addAppointment }) => {
               <span className="progress-point2"></span>
             </div>
             <div className='text-division'>
-              <p>Informacoes Pessoais</p>
+              <p>Informações Pessoais</p>
               <p>Preencha os dados</p>
             </div>
             <div className="name-container">
@@ -344,7 +344,7 @@ const AppointmentForm = ({ addAppointment }) => {
                 <p>Verifique o seu e-mail </p>
               </div>
               <p>Boa! A sua marcação foi agendada com sucesso! <IoCheckmarkDone size={18} className='icon' /></p>
-              <p>Para prosseguir, clique num dos botoes abaixo. <FiCornerLeftDown size={18} className='icon' /> </p>
+              <p>Para prosseguir, clique num dos botoes abaixo.</p>
               <div className='finish-schedule'>
                 <button onClick={() => {
                   resetForm();
