@@ -135,7 +135,7 @@
   background-color: white;
   padding: 2rem;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  height: 70%;
+  height: 600px;
   overflow-y: auto;
   /* Enable scroll for the popup */
 }
