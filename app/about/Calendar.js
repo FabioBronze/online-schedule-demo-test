@@ -211,7 +211,7 @@ const AppointmentForm = ({ addAppointment }) => {
             {selectedDate ? (
               <div>
                 <p className="hours">{getReservationDateMessage(selectedDate)}</p>
-                {isLoading ? ( // Renderizar o indicador de carregamento enquanto isLoading for verdadeiro
+                {isLoading ? (
                   <div className="loading-animation"></div>
                 ) : isDayFullyBooked() ? (
                   <p>Todos os horários para este dia estão preenchidos.</p>
@@ -225,7 +225,7 @@ const AppointmentForm = ({ addAppointment }) => {
                           key={hourObj.hour}
                           onClick={() => {
                             setSelectedHour(hourObj.hour);
-                            nextStep(); // Avançar para a próxima etapa ao selecionar uma hora
+                            nextStep();
                           }}
                           style={{ cursor: 'pointer' }}
                         >
