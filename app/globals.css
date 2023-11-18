@@ -94,7 +94,7 @@ body {
 
 .step-content-button:hover {
   color: #000;
-  background: #e68dbb;
+  background: #f6f8fc;
 }
 
 .step-content label {
@@ -186,7 +186,7 @@ body {
 }
 
 .lists:hover {
-  background-color: #cccccc5b;
+  background-color: #f6f8fc;
 }
 
 .schedule-text {
@@ -257,7 +257,7 @@ body {
 }
 
 .leftMenu li:hover {
-  background: #00000018;
+  background: #f6f8fc;
 }
 
 .rightMenu {
