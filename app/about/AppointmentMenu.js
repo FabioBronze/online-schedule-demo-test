@@ -32,7 +32,7 @@ const AppointmentMenu = ({ openPopup }) => {
       <div className="rightMenu">
         <p>Escolha um serviço para fazer as suas marcações.</p>
         <p>Disfrute de um serviço impecável!</p>
-        <IoIosReturnLeft size={40} className='icon'/>
+        <IoIosReturnLeft size={40} />
       </div>
     </div>
   );

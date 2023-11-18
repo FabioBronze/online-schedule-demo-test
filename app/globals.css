@@ -241,8 +241,11 @@ body {
 .leftMenu {
   width: 800px;
   flex: 1;
-  margin: 0 2rem;
   transform: .1s;
+}
+
+.leftMenu ul {
+  margin-left: -20px;
 }
 
 .leftMenu li {
@@ -264,6 +267,10 @@ body {
   flex: 2;
   text-align: center;
   margin: 0 auto;
+}
+
+.rightMenu p {
+  margin: 1rem;
 }
 
 .modal {
@@ -311,5 +318,12 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 @media (max-width: 992px) {
+  .rightMenu {
+    width: 30vw;
+    font-size: 0.9rem;
+  }
 
+  .leftMenu {
+    width: 70vw;
+  }
 }
