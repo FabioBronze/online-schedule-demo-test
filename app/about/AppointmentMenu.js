@@ -1,4 +1,5 @@
 import { BsArrowBarRight } from 'react-icons/bs';
+import { IoIosReturnLeft } from "react-icons/io";
 
 const AppointmentMenu = ({ openPopup }) => {
   return (
@@ -29,7 +30,9 @@ const AppointmentMenu = ({ openPopup }) => {
         </ul>
       </div>
       <div className="rightMenu">
-        <p>Faça clique para fazer marcações:</p>
+        <p>Escolha um serviço para fazer as suas marcações,</p>
+        <p>E disfrute de um serviço impecável.</p>
+        <IoIosReturnLeft size={40} className='icon'/>
       </div>
     </div>
   );
