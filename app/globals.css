@@ -22,18 +22,13 @@ body {
 .react-calendar__month-view__weekdays__weekday abbr[title] {
   color: #000;
   font-size: 0.7rem;
-  font-weight: 400 !important;
+  font-weight: 400;
   text-decoration: none;
 }
 
 .react-calendar__month-view__days__day {
   color: #000 !important;
-  font-size: 0.8rem !important;
-}
-
-.react-calendar__tile--active {
-  background: transparent !important;
-  position: relative;
+  font-size: 0.8rem;
 }
 
 .react-calendar__tile--active:after {
@@ -68,7 +63,7 @@ body {
 
 .react-calendar__tile:disabled {
   background: transparent !important;
-  color: #00000054 !important;
+  color: #00000062 !important;
 }
 
 .react-calendar__tile:disabled:after {
@@ -82,23 +77,24 @@ body {
   padding: 0.8rem;
   margin: 0.2rem 0 1rem 0;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccccc;
   outline: none;
 }
 
-.step-content button {
+.step-content-button {
   padding: 0.6rem;
   cursor: pointer;
   margin: 1rem 0.5rem 0.5rem 0;
   border-radius: 5px;
-  border: 1px solid #000;
-  background: transparent;
-  color: #000;
+  border: none;
+  background: #000000ea;
+  color: #fff;
   transition: .1s;
 }
 
-.step-content button:hover {
-  background: #ccc;
+.step-content-button:hover {
+  color: #000;
+  background: #e68dbb;
 }
 
 .step-content label {
@@ -115,7 +111,7 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin: 2rem auto 1rem auto;
+  margin: 1rem auto 2rem auto;
 }
 
 .progress-point {
@@ -150,19 +146,19 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   margin-top: -2rem;
+  border-bottom: 1px solid #ccc;
 }
 
 .close-button {
-  padding: 5px;
+  padding: 0.5rem;
   cursor: pointer;
 }
 
 .schedule-time {
   text-align: center;
 }
-
 
 .loading-animation {
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -183,7 +179,7 @@ body {
   text-align: center;
   list-style-type: none;
   padding: 0.6rem 0;
-  border: 1px solid rgba(167, 167, 167, 0.39);
+  border: 1px solid rgba(0, 0, 0, 0.178);
   border-radius: 10px;
   font-size: 0.8rem;
   transition: .1s;
@@ -230,16 +226,8 @@ body {
   color: red;
   font-size: 0.8rem;
   display: flex;
-  margin-top: -0.9rem;
+  margin-top: -0.8rem;
   margin-bottom: 1rem;
-  flex-direction: column;
-}
-
-.finish-schedule {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1rem;
 }
 
 .menu {
@@ -283,7 +271,7 @@ body {
   background-color: white;
   padding: 2rem;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  height: 600px;
+  height: 70%;
   overflow-y: auto;
 }
 

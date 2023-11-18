@@ -178,6 +178,7 @@ const AppointmentForm = ({ addAppointment }) => {
         return (
           <div className="step-content">
             {renderPopupHeader()}
+            <p>Serviço - {currentTipoCorte}</p>
             <span className="progress-bar">
               <span className="progress-point"></span>
               <span className="progress-line"></span>
@@ -185,7 +186,6 @@ const AppointmentForm = ({ addAppointment }) => {
               <span className="progress-line"></span>
               <span className="progress-point2"></span>
             </span>
-            <p>Serviço - {currentTipoCorte}</p>
             <div className='text-division'>
               <p>Horário Disponíveis</p>
               <p>Escolha uma data</p>
@@ -243,6 +243,7 @@ const AppointmentForm = ({ addAppointment }) => {
         return (
           <div className="step-content">
             {renderPopupHeader()}
+            <p>Serviço - {currentTipoCorte}</p>
             <span className="progress-bar">
               <span className="progress-point"></span>
               <span className="progress-line2"></span>
@@ -250,7 +251,6 @@ const AppointmentForm = ({ addAppointment }) => {
               <span className="progress-line"></span>
               <span className="progress-point2"></span>
             </span>
-            <p>Serviço - {currentTipoCorte}</p>
             <div className='text-division'>
               <p>Informações Pessoais</p>
               <p>Preencha os dados</p>
@@ -314,8 +314,8 @@ const AppointmentForm = ({ addAppointment }) => {
               value={observations}
               onChange={(e) => setObservations(e.target.value)}
             />
-            <button onClick={prevStep}>Voltar</button>
-            <button type="submit" onClick={handleSubmit}>
+            <button className='step-content-button' onClick={prevStep}>Voltar</button>
+            <button className='step-content-button' type="submit" onClick={handleSubmit}>
               Agendar
             </button>
           </div>
@@ -325,6 +325,7 @@ const AppointmentForm = ({ addAppointment }) => {
           return (
             <div className="step-content">
               {renderPopupHeader()}
+              <p>Serviço - {currentTipoCorte}</p>
               <span className="progress-bar">
                 <span className="progress-point"></span>
                 <span className="progress-line2"></span>
@@ -332,7 +333,6 @@ const AppointmentForm = ({ addAppointment }) => {
                 <span className="progress-line2"></span>
                 <span className="progress-point"></span>
               </span>
-              <p>Serviço - {currentTipoCorte}</p>
               <div className='text-division'>
                 <p>Marcação Agendada! <IoCheckmarkDone size={18} className='icon' />
                 </p>
@@ -341,11 +341,11 @@ const AppointmentForm = ({ addAppointment }) => {
               <p>Boa! A sua marcação foi agendada com sucesso! <IoCheckmarkDone size={18} className='icon' /></p>
               <p>Para prosseguir, clique num dos botoes abaixo.</p>
               <div className='finish-schedule'>
-                <button onClick={() => {
+                <button className='step-content-button' onClick={() => {
                   resetForm();
                   setCurrentStep(1);
                 }}>Agendar Novamente</button>
-                <button onClick={() => {
+                <button className='step-content-button' onClick={() => {
                   setShowPopup(false);
                   resetForm();
                 }}>Fechar</button>
