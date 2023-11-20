@@ -1,10 +1,13 @@
 import { BsArrowBarRight } from 'react-icons/bs';
-import { IoIosReturnLeft } from "react-icons/io";
+import Image from 'next/image'
+import t from '../../public/teste.jpeg'
 
 const AppointmentMenu = ({ openPopup }) => {
   return (
     <div className="menu">
       <div className="leftMenu">
+        <h3>Marcacoes Online</h3>
+        <p>Escolha o seu servico</p>
         <ul>
           <li onClick={() => openPopup("Corte de Cabelo")}>
             Corte de Cabelo <BsArrowBarRight />
@@ -30,9 +33,7 @@ const AppointmentMenu = ({ openPopup }) => {
         </ul>
       </div>
       <div className="rightMenu">
-        <p>Escolha um serviço para fazer as suas marcações.</p>
-        <p>Disfrute de um serviço impecável!</p>
-        <IoIosReturnLeft size={40} />
+        <Image src={t} alt='Marcacoes Online' />
       </div>
     </div>
   );
