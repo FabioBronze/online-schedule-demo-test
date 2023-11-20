@@ -360,7 +360,7 @@ const AppointmentForm = ({ addAppointment }) => {
 
   return (
     <>
-      {showPopup ? (
+      {showPopup && (
         <div className='modal-overlay'>
           <div className="modal">
             <div className="modal-content">
@@ -370,9 +370,9 @@ const AppointmentForm = ({ addAppointment }) => {
             </div>
           </div>
         </div>
-      ) : (
-        <AppointmentMenu openPopup={openPopup} />
       )}
+      <AppointmentMenu openPopup={openPopup} />
+
     </>
   )
 }
